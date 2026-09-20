@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+        }
+        .active-selection {
+            border: 2px solid #22695f !important;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        body {
+            background-color: #f8faf8;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "tertiary": "#5f2c1b",
+                      "surface-dim": "#d8dbd9",
+                      "on-tertiary-fixed": "#370e02",
+                      "inverse-surface": "#2e3130",
+                      "on-secondary-fixed": "#3b0901",
+                      "on-primary-fixed-variant": "#005047",
+                      "outline-variant": "#bec9c5",
+                      "surface-container-low": "#f2f4f2",
+                      "surface-bright": "#f8faf8",
+                      "on-secondary-fixed-variant": "#743422",
+                      "inverse-on-surface": "#eff1ef",
+                      "surface-container": "#eceeec",
+                      "on-background": "#191c1b",
+                      "on-primary-fixed": "#00201c",
+                      "on-primary": "#ffffff",
+                      "outline": "#6f7976",
+                      "on-primary-container": "#8ed2c5",
+                      "surface-variant": "#e1e3e1",
+                      "tertiary-fixed-dim": "#ffb59e",
+                      "secondary-fixed-dim": "#ffb4a1",
+                      "secondary-fixed": "#ffdbd1",
+                      "error": "#ba1a1a",
+                      "on-surface": "#191c1b",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#abf0e2",
+                      "on-tertiary-container": "#ffb29b",
+                      "tertiary-fixed": "#ffdbd0",
+                      "on-surface-variant": "#3f4946",
+                      "on-tertiary-fixed-variant": "#6e3826",
+                      "surface-container-high": "#e6e9e7",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#ffa48d",
+                      "background": "#f8faf8",
+                      "secondary": "#914a37",
+                      "inverse-primary": "#8fd3c6",
+                      "surface-tint": "#22695f",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#0e5c52",
+                      "surface-container-highest": "#e1e3e1",
+                      "surface": "#f8faf8",
+                      "on-secondary-container": "#793826",
+                      "tertiary-container": "#7b4230",
+                      "on-secondary": "#ffffff",
+                      "primary": "#00433b",
+                      "primary-fixed-dim": "#8fd3c6",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding": "24px",
+                      "card-gap": "12px",
+                      "unit": "8px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "display-xl-mobile": ["Plus Jakarta Sans"],
+                      "display-xl": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                      "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Anchor -->
+<header class="bg-surface/40 backdrop-blur-xl border-b border-white/20 fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-container-padding py-unit max-w-[640px] mx-auto h-16">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-display-xl-mobile text-display-xl-mobile font-bold text-primary tracking-tight">RepSnack</h1>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-white/40 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist headshot of a professional user, styled in high-key lighting with a neutral soft-grey background. The aesthetic is modern and serene, fitting a premium health and wellness application. The lighting is soft and flattering, reflecting the Liquid Glass design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFLNhTvYQ-rplGn7aeEhTBvx1Frg3G6uVnscIf3k8tv9UKfienLB-7IUos_jr1Wsg575t8P3o8u4S9aSmnv3dYuYUJcF4gDqWGXL0NQluEme1C3eBGu-5W7WQ_nr-gpA_CW9jmoOuJIHFmfYpZYlWJOVR-BxC9qfm7kw17DTAPw08ZMXDnTQQk7zoQ2vsL3dcpxONlWqU9csCW-MwdA_Mubrz1sDgXa6FYaHhg7ziC-qhWQR4jQNbP"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-padding max-w-[640px] mx-auto min-h-screen">
+<!-- Onboarding Header -->
+<div class="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<h2 class="font-display-xl-mobile text-display-xl-mobile text-primary mb-3">Pick your first snack</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[85%]">
+                Choose a micro-movement to start your wellness journey. You can change this anytime.
+            </p>
+</div>
+<!-- Exercise Bento Grid -->
+<div class="grid grid-cols-2 gap-card-gap mb-12">
+<!-- Air Squats Card -->
+<button class="exercise-card liquid-glass rounded-xl p-5 flex flex-col items-start text-left transition-all duration-300 hover:scale-[1.02] active:scale-95 group relative overflow-hidden" onclick="selectExercise(this)">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-focus:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="mb-6 w-full flex justify-center py-4 bg-surface-container-low/30 rounded-lg">
+<img alt="Air Squats" class="h-20 w-auto opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLuCVz6pN_wND0Kem0BrS3RMcoZtRx7iuvjH79oq45WKZauJLfwB1py_N8fecvJdApzZrXtviIgcFXGgj3aslvD59XHOcPrBSEKEKUD1vYKjE99lDU9Iy5gygUbRv-2mmjHaQWx_HpoI0Bni6ttLfaZrnFwvo1ICbHEHzNNcEkomkm-w2zSAxdAWIYUAqB8KRREHZ3n31Bqd_C9TRcggCRpv6B4TuKXoZmQ2OAOLcKNny1Ztr4ftaMWe_A"/>
+</div>
+<div class="mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-widest">Legs</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2 leading-tight">Air Squats</h3>
+<div class="bg-primary/10 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-[10px] text-primary uppercase font-bold">Best Detection</span>
+</div>
+</button>
+<!-- Incline Push-Ups Card -->
+<button class="exercise-card liquid-glass rounded-xl p-5 flex flex-col items-start text-left transition-all duration-300 hover:scale-[1.02] active:scale-95 group relative overflow-hidden" onclick="selectExercise(this)">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-focus:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="mb-6 w-full flex justify-center py-4 bg-surface-container-low/30 rounded-lg">
+<img alt="Incline Push-Ups" class="h-20 w-auto opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLsquiRu5sEgEL7IW3WLu3K5zulOuT4lnaYqKQOPHlJ_gPi13UEa_pyfTFDuGxB-JrowX1FDuendFa_82h3Ne3X6jJokQYthI5QZLLRxeTuWC_98HedmG921T0GX6VoyJtIuLXW2gKjjhXgwxBCK3UHLOaQWRxhhR6MRqklms737yBNy3BKnQWm-gymaBdi9KB6m6NHy61Ua-k3MjFUUyAWexo8WZx5WuTdGP7PDgufE9gNU-OhtalFdu74"/>
+</div>
+<div class="mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-widest">Upper Body</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2 leading-tight">Incline Push-Ups</h3>
+<div class="bg-primary/10 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-[10px] text-primary uppercase font-bold">Best Detection</span>
+</div>
+</button>
+<!-- Standing Marches Card -->
+<button class="exercise-card liquid-glass rounded-xl p-5 flex flex-col items-start text-left transition-all duration-300 hover:scale-[1.02] active:scale-95 group relative overflow-hidden" onclick="selectExercise(this)">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-focus:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="mb-6 w-full flex justify-center py-4 bg-surface-container-low/30 rounded-lg">
+<img alt="Standing Marches" class="h-20 w-auto opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLuUdh_oKtIh4s0JWYrC88GbvfEeI5bm2wrknP-rSf_tfAcu6aDQwq5UB71OAC22q_doK1zkdGBAi9IiklOlhk9CUwy6ZFYPXHlWh5tQWgF6IAzPEIbaHEZYzSpkLtVay5dwQVHq4SottQqY3Sjrir2aY_8g4yg5Xd_ZOYUbn_t9l9dc9kcAbrjrl0Zhg7UPZf22aCIa0r2JFuApcKzxqvFUAaKVsKLtRWEhPLjqbfWlOQU6fToPjD6K7-Q"/>
+</div>
+<div class="mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-widest">Core</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2 leading-tight">Standing Marches</h3>
+<div class="bg-primary/10 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-[10px] text-primary uppercase font-bold">Best Detection</span>
+</div>
+</button>
+<!-- Calf Raises Card -->
+<button class="exercise-card liquid-glass rounded-xl p-5 flex flex-col items-start text-left transition-all duration-300 hover:scale-[1.02] active:scale-95 group relative overflow-hidden" onclick="selectExercise(this)">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-focus:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="mb-6 w-full flex justify-center py-4 bg-surface-container-low/30 rounded-lg">
+<img alt="Calf Raises" class="h-20 w-auto opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLtJgIW8Z1NVPeB39pHeOhFWn8yMRqcoq2s6hMT0je92xFPUB4kdIgqhpd-12rAaa03qTkBom5MGeaUpVyz8XPXUrCuj5zgDe0_TejDkS--V1D3xc8cKAnFCa4a8RKldQEPbI4t9N5l17BBNToVtdqsV0IT01UGwggvlZ6TkyJF0XgIXgKQrcKZLJzv_iZshAyx9wENcdgbuB6CevRf_SnvMWRCEpYS0gmC-jtgcodbCP7lSZ03LPJvoBaM"/>
+</div>
+<div class="mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-widest">Lower Body</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2 leading-tight">Calf Raises</h3>
+<div class="bg-on-surface-variant/10 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase font-bold">Standard Detection</span>
+</div>
+</button>
+</div>
+<!-- Primary Action -->
+<div class="flex flex-col items-center">
+<button class="bg-primary text-on-primary font-headline-lg text-headline-lg px-12 py-4 rounded-full shadow-[0_20px_40px_-15px_rgba(34,105,95,0.3)] transition-all hover:scale-105 active:scale-95 opacity-50 cursor-not-allowed" disabled="" id="cta-button">
+                Confirm Snack
+            </button>
+<p class="mt-4 font-label-sm text-label-sm text-on-surface-variant/50">Step 1 of 3</p>
+</div>
+</main>
+<!-- Bottom Navigation (Suppressing per task mandate for onboarding, but kept shell layout for future context if needed) -->
+<!-- Not rendered as this is a focused Task-Focused/Onboarding screen -->
+<script>
+        function selectExercise(element) {
+            // Remove selection from all cards
+            const cards = document.querySelectorAll('.exercise-card');
+            cards.forEach(card => {
+                card.classList.remove('active-selection');
+                card.classList.add('liquid-glass');
+                // Hide check icon
+                const checkIcon = card.querySelector('.group-focus\\:opacity-100');
+                if(checkIcon) checkIcon.style.opacity = '0';
+            });
+
+            // Add selection to clicked card
+            element.classList.add('active-selection');
+            element.classList.remove('liquid-glass');
+            const checkIcon = element.querySelector('.group-focus\\:opacity-100');
+            if(checkIcon) checkIcon.style.opacity = '1';
+
+            // Enable CTA button
+            const cta = document.getElementById('cta-button');
+            cta.disabled = false;
+            cta.classList.remove('opacity-50', 'cursor-not-allowed');
+            cta.classList.add('opacity-100');
+            
+            // Subtle haptic feel
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(10);
+            }
+        }
+
+        // Add smooth entrance animation delays
+        document.querySelectorAll('.exercise-card').forEach((card, index) => {
+            card.style.animationDelay = `${(index + 1) * 100}ms`;
+            card.classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-2', 'duration-500', 'fill-mode-both');
+        });
+    </script>
+</body></html>

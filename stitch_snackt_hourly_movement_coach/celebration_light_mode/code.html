@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack - Well Done</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "tertiary": "#5f2c1b",
+                        "surface-dim": "#d8dbd9",
+                        "on-tertiary-fixed": "#370e02",
+                        "inverse-surface": "#2e3130",
+                        "on-secondary-fixed": "#3b0901",
+                        "on-primary-fixed-variant": "#005047",
+                        "outline-variant": "#bec9c5",
+                        "surface-container-low": "#f2f4f2",
+                        "surface-bright": "#f8faf8",
+                        "on-secondary-fixed-variant": "#743422",
+                        "inverse-on-surface": "#eff1ef",
+                        "surface-container": "#eceeec",
+                        "on-background": "#191c1b",
+                        "on-primary-fixed": "#00201c",
+                        "on-primary": "#ffffff",
+                        "outline": "#6f7976",
+                        "on-primary-container": "#8ed2c5",
+                        "surface-variant": "#e1e3e1",
+                        "tertiary-fixed-dim": "#ffb59e",
+                        "secondary-fixed-dim": "#ffb4a1",
+                        "secondary-fixed": "#ffdbd1",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1b",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#abf0e2",
+                        "on-tertiary-container": "#ffb29b",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-surface-variant": "#3f4946",
+                        "on-tertiary-fixed-variant": "#6e3826",
+                        "surface-container-high": "#e6e9e7",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#ffa48d",
+                        "background": "#f8faf8",
+                        "secondary": "#914a37",
+                        "inverse-primary": "#8fd3c6",
+                        "surface-tint": "#22695f",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0e5c52",
+                        "surface-container-highest": "#e1e3e1",
+                        "surface": "#f8faf8",
+                        "on-secondary-container": "#793826",
+                        "tertiary-container": "#7b4230",
+                        "on-secondary": "#ffffff",
+                        "primary": "#00433b",
+                        "primary-fixed-dim": "#8fd3c6",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "card-gap": "12px",
+                        "unit": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-xl-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes flattenCurve {
+            0% {
+                d: path("M 0 80 Q 80 0, 160 80 T 320 80");
+                stroke: #E8917A;
+            }
+            100% {
+                d: path("M 0 80 Q 80 80, 160 80 T 320 80");
+                stroke: #00433b;
+            }
+        }
+
+        .animate-flatten {
+            animation: flattenCurve 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col items-center">
+<!-- Content Canvas -->
+<main class="w-full max-w-[640px] px-container-padding pt-16 pb-32 flex flex-col items-center text-center">
+<!-- Celebration Visual: The Flattening Curve -->
+<div class="w-full aspect-[4/3] flex items-center justify-center mb-12 relative overflow-hidden rounded-3xl liquid-glass">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-50"></div>
+<div class="relative w-full max-w-[320px] h-[160px] flex items-center justify-center">
+<svg class="w-full h-full drop-shadow-sm overflow-visible" viewbox="0 0 320 160">
+<path class="animate-flatten" fill="none" id="curve" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Descriptive Caption (Mandatory for chart) -->
+<div class="absolute bottom-6 left-6 right-6 text-left">
+<p class="font-label-sm text-label-sm text-on-surface-variant italic opacity-60">
+                    The visual above represents the transition from intermittent physical spikes to a steady, sustainable state of regular micro-movement throughout your workday.
+                </p>
+</div>
+</div>
+<!-- Headline -->
+<h1 class="font-display-xl-mobile text-display-xl-mobile text-primary tracking-tight mb-4 fade-in-up">
+            Well done.<br/>You've flattened the curve.
+        </h1>
+<!-- Stats Container -->
+<div class="w-full grid grid-cols-2 gap-card-gap mb-12 fade-in-up delay-1">
+<!-- Streak Card -->
+<div class="liquid-glass rounded-xl p-6 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2" data-icon="local_fire_department">local_fire_department</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">12 day streak</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Consistent flow</span>
+</div>
+<!-- Total Snacks Card -->
+<div class="liquid-glass rounded-xl p-6 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">84 total snacks</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Completed sessions</span>
+</div>
+</div>
+<!-- Descriptive Copy -->
+<p class="font-body-md text-body-md text-on-surface-variant px-4 mb-12 fade-in-up delay-2 leading-relaxed">
+            Your desk-bound routine is now punctuated by restorative moments of calm. This sustained rhythm supports your focus and long-term well-being without disrupting your deep work.
+        </p>
+<!-- Central CTA -->
+<div class="w-full px-8 fade-in-up delay-3">
+<button class="w-full py-4 bg-primary text-on-primary rounded-full font-headline-lg-mobile text-headline-lg-mobile shadow-[0_30px_60px_-15px_rgba(0,67,59,0.2)] hover:opacity-90 active:scale-95 transition-all duration-200">
+                Done
+            </button>
+</div>
+</main>
+<!-- Decorative Elements (Atmospheric) -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px] pointer-events-none"></div>
+<script>
+        // Micro-interaction for the "Done" button
+        const doneBtn = document.querySelector('button');
+        doneBtn.addEventListener('click', () => {
+            doneBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                doneBtn.style.transform = 'scale(1)';
+                console.log('Journey completed');
+            }, 150);
+        });
+
+        // Initialize any material icons with specific font-variation-settings
+        document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
+            if (icon.getAttribute('data-weight') === 'fill') {
+                icon.style.fontVariationSettings = "'FILL' 1";
+            }
+        });
+    </script>
+</body></html>

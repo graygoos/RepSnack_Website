@@ -1,0 +1,6 @@
+# Cloudflare Pages Clean Route Rewrites (Status 200)
+/privacy    /privacy.html    200
+/terms      /terms.html      200
+/support    /support.html    200
+/exercises  /exercises.html  200
+/science    /science.html    200

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack - Weekly Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+        }
+        body {
+            background-color: #f8faf8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bar-transition {
+            transition: height 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "tertiary": "#5f2c1b",
+                        "surface-dim": "#d8dbd9",
+                        "on-tertiary-fixed": "#370e02",
+                        "inverse-surface": "#2e3130",
+                        "on-secondary-fixed": "#3b0901",
+                        "on-primary-fixed-variant": "#005047",
+                        "outline-variant": "#bec9c5",
+                        "surface-container-low": "#f2f4f2",
+                        "surface-bright": "#f8faf8",
+                        "on-secondary-fixed-variant": "#743422",
+                        "inverse-on-surface": "#eff1ef",
+                        "surface-container": "#eceeec",
+                        "on-background": "#191c1b",
+                        "on-primary-fixed": "#00201c",
+                        "on-primary": "#ffffff",
+                        "outline": "#6f7976",
+                        "on-primary-container": "#8ed2c5",
+                        "surface-variant": "#e1e3e1",
+                        "tertiary-fixed-dim": "#ffb59e",
+                        "secondary-fixed-dim": "#ffb4a1",
+                        "secondary-fixed": "#ffdbd1",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1b",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#abf0e2",
+                        "on-tertiary-container": "#ffb29b",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-surface-variant": "#3f4946",
+                        "on-tertiary-fixed-variant": "#6e3826",
+                        "surface-container-high": "#e6e9e7",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#ffa48d",
+                        "background": "#f8faf8",
+                        "secondary": "#914a37",
+                        "inverse-primary": "#8fd3c6",
+                        "surface-tint": "#22695f",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0e5c52",
+                        "surface-container-highest": "#e1e3e1",
+                        "surface": "#f8faf8",
+                        "on-secondary-container": "#793826",
+                        "tertiary-container": "#7b4230",
+                        "on-secondary": "#ffffff",
+                        "primary": "#00433b",
+                        "primary-fixed-dim": "#8fd3c6",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "card-gap": "12px",
+                        "unit": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-xl-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-[60] bg-surface/40 backdrop-blur-xl border-b border-white/20 px-container-padding py-unit flex justify-between items-center h-16">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-xl-mobile text-display-xl-mobile font-bold text-primary tracking-tight">RepSnack</h1>
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist professional portrait of a woman in a bright, modern office with soft lighting, reflecting a calm and focused work environment. The aesthetic is clean and high-end light mode, featuring subtle textures and a natural, muted color palette consistent with a wellness app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU2mOAWN77J4TyRcIlwhoahZe58exvK1NoWqQpzejxjaw2Z2Xdv8_QDNgFWpYooIV4DzR0bOIaXZHca1XUkQVDLCZayTAiLkXUQD7lmgZBd50cXv1V3o0wuZAWTcCyMKoC9_N0G1uph5KFLSHK3Zy37_BMrLKAR0bcvXBHe_NJqjD6YcHulQgy8zRcahOqF-mnhkkZ3PYiX2txBN8YThwAE9El2Fi6BJvGZzCYL7GdR4EXNY5KBzZC"/>
+</div>
+</header>
+<main class="max-w-[640px] mx-auto pt-24 px-container-padding space-y-gutter">
+<!-- Summary Header -->
+<section class="space-y-unit">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Weekly Insights</h2>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                You're building a consistent movement habit.
+            </p>
+</section>
+<!-- Movement Bar Chart -->
+<div class="liquid-glass rounded-xl p-6 space-y-6">
+<div class="flex justify-between items-end h-40 gap-3">
+<!-- Sunday -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-surface-variant rounded-t-lg bar-transition" style="height: 40%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">S</span>
+</div>
+<!-- Monday -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-primary rounded-t-lg bar-transition" style="height: 85%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">M</span>
+</div>
+<!-- Tuesday -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-primary rounded-t-lg bar-transition" style="height: 95%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">T</span>
+</div>
+<!-- Wednesday -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-primary rounded-t-lg bar-transition" style="height: 70%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">W</span>
+</div>
+<!-- Thursday -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-surface-variant rounded-t-lg bar-transition" style="height: 30%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">T</span>
+</div>
+<!-- Friday -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-primary rounded-t-lg bar-transition" style="height: 100%"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60">F</span>
+</div>
+<!-- Saturday (Today) -->
+<div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+<div class="w-full bg-primary-container rounded-t-lg bar-transition" style="height: 60%"></div>
+<span class="font-label-sm text-label-sm text-primary font-bold">S</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-on-surface-variant/10">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Completed</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-surface-variant"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Missed</span>
+</div>
+</div>
+</div>
+<!-- Streak Calendar Section -->
+<section class="space-y-4">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-widest px-1">October Persistence</h3>
+<div class="liquid-glass rounded-xl p-6">
+<div class="grid grid-cols-7 gap-y-4 gap-x-2">
+<!-- Calendar Header -->
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant/40">M</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant/40">T</div>
+<div class="text-center font-label-sm text-center font-label-sm text-on-surface-variant/40">W</div>
+<div class="text-center font-label-sm text-on-surface-variant/40">T</div>
+<div class="text-center font-label-sm text-on-surface-variant/40">F</div>
+<div class="text-center font-label-sm text-on-surface-variant/40">S</div>
+<div class="text-center font-label-sm text-on-surface-variant/40">S</div>
+<!-- Calendar Dots -->
+<div class="flex justify-center items-center py-1 opacity-0">.</div>
+<div class="flex justify-center items-center py-1 opacity-0">.</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary/40"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex justify-center items-center py-1 relative">
+<div class="w-2 h-2 rounded-full bg-primary ring-4 ring-primary/10"></div>
+<span class="absolute -bottom-4 text-[10px] text-primary font-bold">Today</span>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-surface-variant/40"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-surface-variant/40"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-surface-variant/40"></div>
+</div>
+<div class="flex justify-center items-center py-1">
+<div class="w-2 h-2 rounded-full bg-surface-variant/40"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Movement Focus Card -->
+<section class="pb-10">
+<div class="liquid-glass rounded-xl p-6 flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-full text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-headline-lg-mobile text-base text-primary">Current Focus</h4>
+<p class="font-body-md text-on-surface-variant text-sm">
+                        Focusing on gentle standing marches twice an hour. You've completed 82% of scheduled snacks this week.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-surface/60 backdrop-blur-3xl border-t border-white/20 flex justify-around items-center px-6 pb-8 pt-4 shadow-[0_-4px_30px_rgba(34,105,95,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm mt-0.5">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for bar entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.bar-transition');
+            bars.forEach((bar, index) => {
+                const height = bar.style.height;
+                bar.style.height = '0px';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, index * 100);
+            });
+        });
+    </script>
+</body></html>

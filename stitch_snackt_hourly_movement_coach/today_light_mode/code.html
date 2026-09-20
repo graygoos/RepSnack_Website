@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>RepSnack - Today</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5f2c1b",
+                    "surface-dim": "#d8dbd9",
+                    "on-tertiary-fixed": "#370e02",
+                    "inverse-surface": "#2e3130",
+                    "on-secondary-fixed": "#3b0901",
+                    "on-primary-fixed-variant": "#005047",
+                    "outline-variant": "#bec9c5",
+                    "surface-container-low": "#f2f4f2",
+                    "surface-bright": "#f8faf8",
+                    "on-secondary-fixed-variant": "#743422",
+                    "inverse-on-surface": "#eff1ef",
+                    "surface-container": "#eceeec",
+                    "on-background": "#191c1b",
+                    "on-primary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "outline": "#6f7976",
+                    "on-primary-container": "#8ed2c5",
+                    "surface-variant": "#e1e3e1",
+                    "tertiary-fixed-dim": "#ffb59e",
+                    "secondary-fixed-dim": "#ffb4a1",
+                    "secondary-fixed": "#ffdbd1",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1b",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#abf0e2",
+                    "on-tertiary-container": "#ffb29b",
+                    "tertiary-fixed": "#ffdbd0",
+                    "on-surface-variant": "#3f4946",
+                    "on-tertiary-fixed-variant": "#6e3826",
+                    "surface-container-high": "#e6e9e7",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ffa48d",
+                    "background": "#f8faf8",
+                    "secondary": "#914a37",
+                    "inverse-primary": "#8fd3c6",
+                    "surface-tint": "#22695f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0e5c52",
+                    "surface-container-highest": "#e1e3e1",
+                    "surface": "#f8faf8",
+                    "on-secondary-container": "#793826",
+                    "tertiary-container": "#7b4230",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00433b",
+                    "primary-fixed-dim": "#8fd3c6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "card-gap": "12px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-xl-mobile": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+        }
+        body {
+            background-color: #f8faf8;
+            -webkit-font-smoothing: antialiased;
+            color: #191c1b;
+        }
+        .chart-container {
+            height: 120px;
+            position: relative;
+        }
+        .spike-curve {
+            stroke: #E8917A; /* Coral */
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+        }
+        .controlled-curve {
+            stroke: #22695f; /* Teal */
+            stroke-width: 2.5;
+            fill: none;
+            stroke-linecap: round;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Top App Bar -->
+<header class="bg-surface/40 backdrop-blur-xl border-b border-white/20 fixed top-0 w-full z-50 flex justify-between items-center px-container-padding py-unit max-w-[640px] mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">menu</span>
+</div>
+<h1 class="font-display-xl-mobile text-display-xl-mobile font-bold text-primary tracking-tight">RepSnack</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-white/40">
+<img class="w-full h-full object-cover" data-alt="A minimalist professional headshot of a person in high-key, soft white lighting. The portrait is clean and modern, set against a neutral, airy background that fits a wellness and focus-oriented digital aesthetic. The style is soft, editorial, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7wgl3NEtIPzvv5DvGoWcIR3q8vzPr6RjgU3bge11GOr_SEnduqEi54MehRgbxV2hZlxIFDbhngQ6qXX139XUvHfF9MjZVbB9Xt7_wN35wftchHwr0mpg_YenLvbA2vL-X3E9utpkJiIYgMQvUPCMXDIGD9X-VjiJwE2nnNQ5gcsI0hE0XgLNsDnU9Nhsld131104feOmkUTJ8XuERQNquzNjHwJi8xXN-Y-y1Byz13OXdino9CEt8"/>
+</div>
+</header>
+<main class="w-full max-w-[640px] px-container-padding pt-28 pb-32 flex flex-col gap-gutter">
+<!-- 1. Next-snack Countdown -->
+<section class="flex flex-col items-center justify-center text-center py-6">
+<span class="font-label-sm text-label-sm text-on-surface-variant/70 mb-2 uppercase tracking-widest">Upcoming Snack</span>
+<div class="font-display-xl-mobile text-[48px] leading-tight font-extrabold text-primary tracking-tight">
+                Next snack in <span class="text-primary-container">24 min</span>
+</div>
+</section>
+<!-- 2. Today's Progress Count -->
+<div class="liquid-glass rounded-3xl p-6 flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-1">Today's Progress</h2>
+<p class="font-body-md text-body-md text-on-surface-variant/80">Keep the momentum going.</p>
+</div>
+<div class="relative flex items-center justify-center">
+<svg class="w-20 h-20 -rotate-90">
+<!-- Background ring -->
+<circle class="text-primary/10" cx="40" cy="40" fill="transparent" r="32" stroke="currentColor" stroke-width="6"></circle>
+<!-- Progress segment -->
+<circle class="text-primary" cx="40" cy="40" fill="transparent" r="32" stroke="currentColor" stroke-dasharray="201" stroke-dashoffset="50" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-lg text-headline-lg text-primary leading-none">6</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant/60 uppercase">of 8</span>
+</div>
+</div>
+</div>
+<!-- 3. Response Flattening Card -->
+<div class="liquid-glass rounded-3xl p-6 flex flex-col gap-4 shadow-sm">
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<h3 class="font-headline-lg text-headline-lg text-primary">Response Flattening</h3>
+<div class="flex gap-4 mt-2">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-[#E8917A]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Spike</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-[#22695f]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">Controlled</span>
+</div>
+</div>
+</div>
+</div>
+<div class="chart-container mt-2">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 400 120">
+<!-- Baseline -->
+<line stroke="#eceeec" stroke-width="1" x1="0" x2="400" y1="100" y2="100"></line>
+<!-- Spike Curve (Coral) -->
+<path class="spike-curve" d="M0,100 C50,100 100,10 200,10 C300,10 350,100 400,100"></path>
+<!-- Controlled Curve (Teal) -->
+<path class="controlled-curve" d="M0,100 C50,100 100,70 200,70 C300,70 350,100 400,100"></path>
+</svg>
+</div>
+<p class="font-label-sm text-[11px] text-on-surface-variant/50 italic leading-relaxed text-center">
+                Illustrative — based on published research, not a personal reading.
+            </p>
+</div>
+<!-- 4. Next Up Card -->
+<div class="liquid-glass rounded-3xl p-6 flex flex-col gap-6 shadow-sm border-l-4 border-primary">
+<div class="flex items-start justify-between">
+<div class="flex gap-5 items-center">
+<div class="w-16 h-16 rounded-2xl bg-primary-fixed/30 flex items-center justify-center">
+<img alt="Air Squats Icon" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuCVz6pN_wND0Kem0BrS3RMcoZtRx7iuvjH79oq45WKZauJLfwB1py_N8fecvJdApzZrXtviIgcFXGgj3aslvD59XHOcPrBSEKEKUD1vYKjE99lDU9Iy5gygUbRv-2mmjHaQWx_HpoI0Bni6ttLfaZrnFwvo1ICbHEHzNNcEkomkm-w2zSAxdAWIYUAqB8KRREHZ3n31Bqd_C9TRcggCRpv6B4TuKXoZmQ2OAOLcKNny1Ztr4ftaMWe_A"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Next Up • 11:00 AM</span>
+<h3 class="font-display-xl-mobile text-[28px] text-primary">Air Squats</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant/60">timer</span>
+<span class="font-body-md text-body-md text-on-surface-variant">40 sec</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary hover:opacity-90 active:scale-[0.98] transition-all py-4 rounded-full text-white font-headline-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+<span>Start Exercise</span>
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 flex justify-around items-center px-6 pb-8 pt-4 bg-surface/60 backdrop-blur-3xl border-t border-white/20 shadow-[0_-4px_30px_rgba(34,105,95,0.05)]">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.96)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Simple entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.liquid-glass');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `all 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${index * 0.1}s`;
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        });
+    </script>
+</body></html>

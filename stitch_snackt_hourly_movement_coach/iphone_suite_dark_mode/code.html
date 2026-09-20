@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack - Dark Mode Ecosystem</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "tertiary": "#5f2c1b",
+                        "surface-dim": "#121412",
+                        "on-tertiary-fixed": "#370e02",
+                        "inverse-surface": "#eff1ef",
+                        "on-secondary-fixed": "#3b0901",
+                        "on-primary-fixed-variant": "#005047",
+                        "outline-variant": "#3f4946",
+                        "surface-container-low": "#191c1b",
+                        "surface-bright": "#2e3130",
+                        "on-secondary-fixed-variant": "#743422",
+                        "inverse-on-surface": "#191c1b",
+                        "surface-container": "#1d201f",
+                        "on-background": "#eff1ef",
+                        "on-primary-fixed": "#00201c",
+                        "on-primary": "#ffffff",
+                        "outline": "#899390",
+                        "on-primary-container": "#8ed2c5",
+                        "surface-variant": "#3f4946",
+                        "tertiary-fixed-dim": "#ffb59e",
+                        "secondary-fixed-dim": "#ffb4a1",
+                        "secondary-fixed": "#ffdbd1",
+                        "error": "#ffb4ab",
+                        "on-surface": "#eff1ef",
+                        "error-container": "#93000a",
+                        "primary-fixed": "#abf0e2",
+                        "on-tertiary-container": "#ffb29b",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-surface-variant": "#bfc9c5",
+                        "on-tertiary-fixed-variant": "#6e3826",
+                        "surface-container-high": "#282b2a",
+                        "surface-container-lowest": "#0c0e0d",
+                        "secondary-container": "#793826",
+                        "background": "#121412",
+                        "secondary": "#ffb4a1",
+                        "inverse-primary": "#22695f",
+                        "surface-tint": "#8fd3c6",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#0e5c52",
+                        "surface-container-highest": "#333635",
+                        "surface": "#121412",
+                        "on-secondary-container": "#ffdbd1",
+                        "tertiary-container": "#7b4230",
+                        "on-secondary": "#561e0e",
+                        "primary": "#8fd3c6",
+                        "primary-fixed-dim": "#8fd3c6",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "card-gap": "12px",
+                        "unit": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-xl-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-scroll::-webkit-scrollbar { display: none; }
+        .canvas-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Flattening Curve Animation */
+        .curve-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s linear forwards;
+        }
+        @keyframes dash { to { stroke-dashoffset: 0; } }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- App Container (Constrained for Desktop, Full for Mobile) -->
+<div class="max-w-[640px] mx-auto min-h-screen relative flex flex-col shadow-2xl bg-surface-container-lowest/5">
+<!-- SCREEN 4: TODAY (Default View) -->
+<header class="bg-surface/40 dark:bg-surface-container/10 backdrop-blur-xl border-b border-white/20 docked full-width top-0 sticky z-50" id="nav-shell">
+<div class="flex justify-between items-center w-full px-container-padding py-unit max-w-[640px] mx-auto">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity">menu</span>
+<h1 class="font-display-xl-mobile text-display-xl-mobile font-bold text-primary dark:text-primary-fixed-dim tracking-tight">RepSnack</h1>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a relaxed office worker in their 30s, looking into the camera with a calm and focused expression. The lighting is soft and cinematic, with deep shadows and teal highlights reflecting a modern dark mode aesthetic. The background is a blurred, high-end office environment with dark glass textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgQl3_9_cZuKLRc56ky-2laTNDG73vzkL31Z2HHk_ivlm1U_-biDviAh7OZMuELsxvxzoQSC7WP6ZvdecFHDGZHIIB6KYYiSh7lEbmAXlgR6WE0sdx7t1bY6AxP0jcb9MlRm9LwWkjpBtTfHdnapJkI94sV-UeW51z1z9xL_NGV1mW2-CNZR8la0B3d-OLFokTk1SkwvJRDq85jxUuPiHSkwrra2CIjp-ku1Z5--tN0n1d-MhIPGUo"/>
+</div>
+</div>
+</header>
+<main class="flex-1 px-container-padding pt-gutter pb-32 space-y-gutter canvas-scroll overflow-y-auto">
+<!-- Daily Progress Circular Ring -->
+<section class="liquid-glass rounded-3xl p-gutter flex flex-col items-center text-center space-y-4">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/5" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary dark:text-primary-fixed-dim rounded-full transition-all duration-1000 ease-out" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.9" stroke-dashoffset="138" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-xl-mobile text-display-xl-mobile text-primary-fixed-dim">75%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Daily Goal</span>
+</div>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Time for a snack?</h2>
+<p class="font-body-md text-on-surface-variant text-sm px-8">You've been focused for 52 minutes. A quick movement will reset your posture.</p>
+</div>
+</section>
+<!-- Upcoming Snack Card -->
+<section class="liquid-glass rounded-3xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
+<img alt="Standing Marches Silhouette" class="w-24 h-24 filter brightness-200 contrast-150" src="https://lh3.googleusercontent.com/aida/AP1WRLuUdh_oKtIh4s0JWYrC88GbvfEeI5bm2wrknP-rSf_tfAcu6aDQwq5UB71OAC22q_doK1zkdGBAi9IiklOlhk9CUwy6ZFYPXHlWh5tQWgF6IAzPEIbaHEZYzSpkLtVay5dwQVHq4SottQqY3Sjrir2aY_8g4yg5Xd_ZOYUbn_t9l9dc9kcAbrjrl0Zhg7UPZf22aCIa0r2JFuApcKzxqvFUAaKVsKLtRWEhPLjqbfWlOQU6fToPjD6K7-Q"/>
+</div>
+<div class="relative z-10 space-y-4">
+<div class="flex items-center gap-2">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-sm text-[11px] uppercase tracking-wider">Next Up: 11:30 AM</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Standing Marches</h3>
+<p class="text-on-surface-variant font-body-md">Simple hip mobility to counter sitting tension.</p>
+</div>
+<button class="bg-primary text-on-primary font-bold px-8 py-3 rounded-full hover:scale-95 transition-transform duration-200 shadow-lg shadow-primary/20">
+                        Start Movement
+                    </button>
+</div>
+</section>
+<!-- Activity Chart Section -->
+<section class="liquid-glass rounded-3xl p-gutter space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Postural Response</h4>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Flow State</p>
+</div>
+<div class="text-right">
+<span class="text-secondary dark:text-secondary-fixed-dim font-bold">+12%</span>
+<p class="text-[10px] text-on-surface-variant">Focus Metric</p>
+</div>
+</div>
+<!-- Minimalist Spike Line Chart -->
+<div class="h-24 w-full flex items-end gap-1 relative overflow-hidden border-b border-white/5">
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<path class="curve-path" d="M0 80 Q 50 20, 100 70 T 200 40 T 300 80 T 400 30 T 500 70 T 600 50" fill="none" stroke="#E8917A" stroke-width="2"></path>
+</svg>
+</div>
+</section>
+<!-- Grid Bento: Insights Preview -->
+<div class="grid grid-cols-2 gap-card-gap">
+<div class="liquid-glass rounded-3xl p-5 flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+<div>
+<p class="text-on-surface font-bold text-lg">8</p>
+<p class="text-on-surface-variant text-[11px] font-label-sm">Total Snacks</p>
+</div>
+</div>
+<div class="liquid-glass rounded-3xl p-5 flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-secondary text-3xl">timer</span>
+<div>
+<p class="text-on-surface font-bold text-lg">14m</p>
+<p class="text-on-surface-variant text-[11px] font-label-sm">Total Motion</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom NavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 max-w-[640px] left-1/2 -translate-x-1/2 bg-surface/60 dark:bg-surface-container-lowest/10 backdrop-blur-3xl border-t border-white/20 shadow-[0_-4px_30px_rgba(34,105,95,0.05)]">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 Active: scale-90 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined" data-weight="fill">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Insights</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+<!-- Floating Action Button Contextual (Hidden on some screens) -->
+<button class="fixed bottom-24 right-container-padding bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-40 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- Dynamic Overlay / Notification (Micro-intervention toast) -->
+<div class="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-[400px] z-50 transform translate-y-[-150%] transition-transform duration-500 ease-out" id="toast">
+<div class="liquid-glass rounded-2xl p-4 flex items-center gap-4 shadow-2xl">
+<div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">accessibility_new</span>
+</div>
+<div class="flex-1">
+<p class="text-on-surface font-bold text-sm">Shoulder Reset Suggested</p>
+<p class="text-on-surface-variant text-xs">Based on 45m keyboard activity.</p>
+</div>
+<button class="text-primary font-bold text-sm">Go</button>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        // Simulated UI Interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show toast after 2 seconds
+            setTimeout(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-[-150%]');
+                toast.classList.add('translate-y-0');
+            }, 2000);
+
+            // Close toast on interaction
+            document.getElementById('toast').addEventListener('click', () => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('translate-y-[-150%]');
+            });
+
+            // Smooth parallax-like effect on glass cards
+            const cards = document.querySelectorAll('.liquid-glass');
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                cards.forEach(card => {
+                    // Very subtle tilt
+                    // card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+            });
+        });
+    </script>
+<!-- Content Preloader for "Liquid Glass" feel -->
+<div class="fixed inset-0 pointer-events-none z-[100] opacity-0 transition-opacity duration-1000 bg-background" id="preloader"></div>
+<script>
+        window.addEventListener('load', () => {
+            document.getElementById('preloader').style.display = 'none';
+        });
+    </script>
+</body></html>

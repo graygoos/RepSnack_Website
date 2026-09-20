@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack Settings</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5f2c1b",
+                    "surface-dim": "#d8dbd9",
+                    "on-tertiary-fixed": "#370e02",
+                    "inverse-surface": "#2e3130",
+                    "on-secondary-fixed": "#3b0901",
+                    "on-primary-fixed-variant": "#005047",
+                    "outline-variant": "#bec9c5",
+                    "surface-container-low": "#f2f4f2",
+                    "surface-bright": "#f8faf8",
+                    "on-secondary-fixed-variant": "#743422",
+                    "inverse-on-surface": "#eff1ef",
+                    "surface-container": "#eceeec",
+                    "on-background": "#191c1b",
+                    "on-primary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "outline": "#6f7976",
+                    "on-primary-container": "#8ed2c5",
+                    "surface-variant": "#e1e3e1",
+                    "tertiary-fixed-dim": "#ffb59e",
+                    "secondary-fixed-dim": "#ffb4a1",
+                    "secondary-fixed": "#ffdbd1",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1b",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#abf0e2",
+                    "on-tertiary-container": "#ffb29b",
+                    "tertiary-fixed": "#ffdbd0",
+                    "on-surface-variant": "#3f4946",
+                    "on-tertiary-fixed-variant": "#6e3826",
+                    "surface-container-high": "#e6e9e7",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ffa48d",
+                    "background": "#f8faf8",
+                    "secondary": "#914a37",
+                    "inverse-primary": "#8fd3c6",
+                    "surface-tint": "#22695f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0e5c52",
+                    "surface-container-highest": "#e1e3e1",
+                    "surface": "#f8faf8",
+                    "on-secondary-container": "#793826",
+                    "tertiary-container": "#7b4230",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00433b",
+                    "primary-fixed-dim": "#8fd3c6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "card-gap": "12px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-xl-mobile": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+        body {
+            background-color: #f8faf8; /* Soft off-white */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .custom-toggle {
+            width: 44px;
+            height: 24px;
+            background-color: #e1e3e1;
+            border-radius: 9999px;
+            position: relative;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .custom-toggle.active {
+            background-color: #00433b;
+        }
+        .custom-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .custom-toggle.active::after {
+            transform: translateX(20px);
+        }
+        .active-pill {
+            background-color: #0e5c52;
+            color: #8ed2c5;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar -->
+<header class="bg-surface/40 dark:bg-surface-container/10 backdrop-blur-xl border-b border-white/20 docked full-width top-0 sticky z-40">
+<div class="flex justify-between items-center w-full px-container-padding py-unit max-w-[640px] mx-auto h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-display-xl-mobile text-display-xl-mobile font-bold text-primary dark:text-primary-fixed-dim tracking-tight">RepSnack</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+</header>
+<main class="max-w-[640px] mx-auto px-container-padding pb-32 pt-6 flex flex-col gap-gutter">
+<!-- Section Header -->
+<div class="mb-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Settings</h2>
+<p class="text-on-surface-variant/70 font-label-sm text-label-sm">Customize your focus and movement intervals</p>
+</div>
+<!-- 1. Schedule Section -->
+<section class="flex flex-col gap-card-gap">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60">Schedule</h3>
+</div>
+<div class="liquid-glass rounded-xl p-5 flex flex-col gap-4">
+<!-- Manual Hours -->
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-md text-on-surface">Active Window</p>
+<p class="text-xs text-on-surface-variant">Movement prompts will occur between</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container p-2 rounded-lg">
+<span class="font-body-md font-medium text-primary">9:00 AM — 5:00 PM</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" data-icon="edit">edit</span>
+</div>
+</div>
+<div class="h-[0.5px] bg-outline-variant/30"></div>
+<!-- Focus Toggle -->
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-md text-on-surface">Smart Focus Mode</p>
+<p class="text-xs text-on-surface-variant">Pause prompts during deep work sessions</p>
+</div>
+<div class="custom-toggle active" onclick="this.classList.toggle('active')"></div>
+</div>
+<div class="h-[0.5px] bg-outline-variant/30"></div>
+<!-- Calendar Toggle -->
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-md text-on-surface">Calendar Sync</p>
+<p class="text-xs text-on-surface-variant">Skip prompts when in a meeting</p>
+</div>
+<div class="custom-toggle" onclick="this.classList.toggle('active')"></div>
+</div>
+</div>
+</section>
+<!-- 2. Exercise Preferences Section -->
+<section class="flex flex-col gap-card-gap">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-primary" data-icon="fitness_center">fitness_center</span>
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60">Exercise Preferences</h3>
+</div>
+<div class="liquid-glass rounded-xl p-5 flex flex-col gap-4">
+<!-- Default Exercise -->
+<div class="flex justify-between items-center">
+<p class="font-body-md text-on-surface">Default Exercise</p>
+<div class="flex items-center gap-1 text-primary">
+<span class="font-body-md font-medium">Standing Marches</span>
+<span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="h-[0.5px] bg-outline-variant/30"></div>
+<!-- Toggle Grid for Exercises -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Air Squats -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="accessibility_new">accessibility_new</span>
+</div>
+<span class="font-body-md">Air Squats</span>
+</div>
+<div class="custom-toggle active" onclick="this.classList.toggle('active')"></div>
+</div>
+<!-- Calf Raises -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="align_vertical_bottom">align_vertical_bottom</span>
+</div>
+<span class="font-body-md">Calf Raises</span>
+</div>
+<div class="custom-toggle active" onclick="this.classList.toggle('active')"></div>
+</div>
+<!-- Incline Push-Ups -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="vertical_align_center">vertical_align_center</span>
+</div>
+<span class="font-body-md">Incline Push-Ups</span>
+</div>
+<div class="custom-toggle active" onclick="this.classList.toggle('active')"></div>
+</div>
+<!-- Standing Marches -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="directions_walk">directions_walk</span>
+</div>
+<span class="font-body-md">Standing Marches</span>
+</div>
+<div class="custom-toggle active" onclick="this.classList.toggle('active')"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Notifications Section -->
+<section class="flex flex-col gap-card-gap">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60">Notifications</h3>
+</div>
+<div class="liquid-glass rounded-xl p-5">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-md text-on-surface">Focus Feedback</p>
+<p class="text-xs text-on-surface-variant">Choose how you want to be notified</p>
+</div>
+<div class="flex bg-surface-container rounded-full p-1 gap-1">
+<button class="px-4 py-1.5 rounded-full text-xs font-medium transition-all active-pill" id="btn-haptic" onclick="toggleNotif(this, 'haptic')">Haptic</button>
+<button class="px-4 py-1.5 rounded-full text-xs font-medium transition-all text-on-surface-variant" id="btn-both" onclick="toggleNotif(this, 'both')">Haptic + Sound</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Privacy Section -->
+<section class="flex flex-col gap-card-gap">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-primary" data-icon="lock">lock</span>
+<h3 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60">Privacy</h3>
+</div>
+<div class="liquid-glass rounded-xl p-5 bg-primary/5">
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="verified_user">verified_user</span>
+<p class="font-body-md text-on-surface-variant text-sm leading-relaxed">
+                        Your motion data stays on your device. We only sync completion counts to your account to track your long-term wellness progress without compromising your privacy.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Help & Support -->
+<section class="flex flex-col gap-2 mt-4 items-center">
+<button class="text-primary font-medium text-sm flex items-center gap-2 hover:opacity-80 transition-opacity">
+<span>View User Manual</span>
+<span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</button>
+<p class="text-[10px] text-on-surface-variant/50 uppercase tracking-[0.2em] mt-4">RepSnack v2.4.0 • Built for focus</p>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 max-w-[640px] left-1/2 -translate-x-1/2 bg-surface/60 backdrop-blur-3xl border-t border-white/20 shadow-[0_-4px_30px_rgba(34,105,95,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        function toggleNotif(btn, mode) {
+            const hapticBtn = document.getElementById('btn-haptic');
+            const bothBtn = document.getElementById('btn-both');
+            
+            hapticBtn.classList.remove('active-pill');
+            hapticBtn.classList.add('text-on-surface-variant');
+            bothBtn.classList.remove('active-pill');
+            bothBtn.classList.add('text-on-surface-variant');
+            
+            btn.classList.add('active-pill');
+            btn.classList.remove('text-on-surface-variant');
+            
+            // Interaction feedback
+            btn.classList.add('scale-95');
+            setTimeout(() => btn.classList.remove('scale-95'), 200);
+        }
+
+        // Simple animation for the manual edit interaction
+        document.querySelectorAll('.liquid-glass > div').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.add('scale-[0.98]');
+                setTimeout(() => item.classList.remove('scale-[0.98]'), 150);
+            });
+        });
+    </script>
+</body></html>

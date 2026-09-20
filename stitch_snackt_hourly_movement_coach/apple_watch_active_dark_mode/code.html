@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack Apple Watch - Active Snack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5f2c1b",
+                    "surface-dim": "#d8dbd9",
+                    "on-tertiary-fixed": "#370e02",
+                    "inverse-surface": "#2e3130",
+                    "on-secondary-fixed": "#3b0901",
+                    "on-primary-fixed-variant": "#005047",
+                    "outline-variant": "#bec9c5",
+                    "surface-container-low": "#f2f4f2",
+                    "surface-bright": "#f8faf8",
+                    "on-secondary-fixed-variant": "#743422",
+                    "inverse-on-surface": "#eff1ef",
+                    "surface-container": "#eceeec",
+                    "on-background": "#191c1b",
+                    "on-primary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "outline": "#6f7976",
+                    "on-primary-container": "#8ed2c5",
+                    "surface-variant": "#e1e3e1",
+                    "tertiary-fixed-dim": "#ffb59e",
+                    "secondary-fixed-dim": "#ffb4a1",
+                    "secondary-fixed": "#ffdbd1",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1b",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#abf0e2",
+                    "on-tertiary-container": "#ffb29b",
+                    "tertiary-fixed": "#ffdbd0",
+                    "on-surface-variant": "#3f4946",
+                    "on-tertiary-fixed-variant": "#6e3826",
+                    "surface-container-high": "#e6e9e7",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ffa48d",
+                    "background": "#000000", /* Pure black for OLED */
+                    "secondary": "#914a37",
+                    "inverse-primary": "#8fd3c6",
+                    "surface-tint": "#22695f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0e5c52",
+                    "surface-container-highest": "#e1e3e1",
+                    "surface": "#000000",
+                    "on-secondary-container": "#793826",
+                    "tertiary-container": "#7b4230",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00433b",
+                    "primary-fixed-dim": "#8fd3c6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "card-gap": "12px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-xl-mobile": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .watch-container {
+            width: 324px; /* Apple Watch Series 9 45mm width roughly */
+            height: 394px; /* Apple Watch Series 9 45mm height roughly */
+            border-radius: 60px;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid #1a1a1a;
+            box-shadow: 0 0 0 8px #080808;
+        }
+
+        @keyframes ring-pulse {
+            0% { stroke-width: 8; opacity: 1; }
+            50% { stroke-width: 10; opacity: 0.8; }
+            100% { stroke-width: 8; opacity: 1; }
+        }
+
+        .pulse-ring {
+            animation: ring-pulse 2s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .glass-overlay {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hide scrollbars */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface-dim min-h-screen flex items-center justify-center font-body-md text-on-surface p-8">
+<!-- Apple Watch Simulation Container -->
+<div class="watch-container relative shadow-2xl flex flex-col items-center">
+<!-- Status Bar (Simplified) -->
+<div class="w-full flex justify-between px-8 pt-6 pb-2 z-10">
+<span class="font-bold text-[14px] text-primary-fixed-dim">10:09</span>
+<span class="material-symbols-outlined text-primary-fixed-dim text-[16px]">battery_horiz_050</span>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 w-full flex flex-col items-center px-4 overflow-y-auto no-scrollbar pb-10">
+<!-- Complication Style Header (Glanceable Today View) -->
+<div class="w-full flex justify-between items-center bg-white/5 rounded-2xl p-3 mb-6">
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant/60">Next Snack</span>
+<span class="font-headline-lg-mobile text-[16px] text-primary-fixed-dim">24m</span>
+</div>
+<div class="h-8 w-[1px] bg-white/10"></div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant/60">Today</span>
+<span class="font-headline-lg-mobile text-[16px] text-primary-fixed-dim">6 / 8</span>
+</div>
+</div>
+<!-- Active Snack Section -->
+<div class="relative w-full flex flex-col items-center gap-4">
+<!-- Exercise Label & Icon -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-10 h-10 mb-1 opacity-90">
+<img class="w-full h-full object-contain filter invert brightness-200 contrast-100" src="https://lh3.googleusercontent.com/aida/AP1WRLuCVz6pN_wND0Kem0BrS3RMcoZtRx7iuvjH79oq45WKZauJLfwB1py_N8fecvJdApzZrXtviIgcFXGgj3aslvD59XHOcPrBSEKEKUD1vYKjE99lDU9Iy5gygUbRv-2mmjHaQWx_HpoI0Bni6ttLfaZrnFwvo1ICbHEHzNNcEkomkm-w2zSAxdAWIYUAqB8KRREHZ3n31Bqd_C9TRcggCRpv6B4TuKXoZmQ2OAOLcKNny1Ztr4ftaMWe_A"/>
+</div>
+<h1 class="font-headline-lg-mobile text-[20px] text-on-surface tracking-tight">Air Squats</h1>
+</div>
+<!-- Circular Rep Counter -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Background Ring -->
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-white/10" cx="96" cy="96" fill="transparent" r="84" stroke="currentColor" stroke-width="8"></circle>
+<!-- Progress Ring (60% for 6/10) -->
+<circle class="text-primary-fixed-dim pulse-ring" cx="96" cy="96" fill="transparent" r="84" stroke="currentColor" stroke-dasharray="527.78" stroke-dashoffset="211.11" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<!-- Rep Number Display -->
+<div class="text-center z-10">
+<span class="block font-display-xl-mobile text-[48px] leading-none text-primary-fixed-dim font-bold">6</span>
+<span class="block font-label-sm text-[18px] text-on-surface-variant/70 mt-1">/ 10</span>
+</div>
+</div>
+<!-- Micro-Intervention Progress (Small Dots) -->
+<div class="flex gap-2 mt-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim/20"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim/20"></div>
+</div>
+</div>
+<!-- Action Area (Bottom Pinned) -->
+<div class="mt-8 w-full flex justify-center">
+<button class="bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-bold text-[16px] flex items-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                    Done
+                </button>
+</div>
+</main>
+<!-- Digital Crown Indicator (Visual only) -->
+<div class="absolute right-[-8px] top-[80px] w-4 h-12 bg-[#1a1a1a] rounded-l-md border-y border-l border-white/10 shadow-lg"></div>
+<div class="absolute right-[-6px] top-[150px] w-2 h-16 bg-[#1a1a1a] rounded-l-md border-y border-l border-white/10"></div>
+</div>
+<script>
+        // Simple Interaction logic for the "Done" button
+        document.querySelector('button').addEventListener('click', () => {
+            const btn = document.querySelector('button');
+            btn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-bounce">celebration</span> Nice!';
+            btn.classList.replace('bg-primary-container', 'bg-primary-fixed-dim');
+            btn.classList.replace('text-on-primary-container', 'text-primary-container');
+            
+            // Haptic Feedback Simulation (Flash Screen)
+            const watch = document.querySelector('.watch-container');
+            watch.style.transition = 'background-color 0.1s';
+            watch.style.backgroundColor = '#0e5c52';
+            setTimeout(() => {
+                watch.style.backgroundColor = '#000000';
+            }, 150);
+        });
+    </script>
+</body></html>

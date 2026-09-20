@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use & EULA — RepSnack</title>
+  <meta name="description" content="RepSnack Terms of Use and End User License Agreement (EULA). Subscription terms, physical exercise assumption of risk, and liability disclaimers.">
+  <link rel="canonical" href="https://repsnack.com/terms.html">
+
+  <!-- OpenGraph / Social Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://repsnack.com/terms.html">
+  <meta property="og:title" content="Terms of Use & EULA — RepSnack">
+  <meta property="og:description" content="Terms of Use, auto-renewing subscription terms, health disclaimers, and assumption of risk for RepSnack.">
+  <meta property="og:image" content="https://repsnack.com/assets/images/RepSnack_Icon_FullSquat_Light_1024.png">
+
+  <!-- Favicon & Theme Color -->
+  <link rel="icon" type="image/png" href="../assets/images/RepSnack_Icon_FullSquat_Light_1024.png">
+  <link rel="apple-touch-icon" href="../assets/images/RepSnack_Icon_FullSquat_Light_1024.png">
+  <meta name="theme-color" content="#0E5C52">
+
+  <!-- Theme Init Script to prevent FOUC & provide instant toggle -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = null;
+        try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark');
+        }
+      } catch (err) {}
+    })();
+
+    var _repSnackHeadToggle = 0;
+    window.toggleRepSnackTheme = function() {
+      var now = Date.now();
+      if (now - _repSnackHeadToggle < 250) {
+        return; // Guard against rapid duplicate firing
+      }
+      _repSnackHeadToggle = now;
+
+      try {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                     document.documentElement.classList.contains('dark');
+        var nextTheme = isDark ? 'light' : 'dark';
+
+        if (nextTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark');
+          if (document.body) {
+            document.body.classList.add('dark');
+            document.body.setAttribute('data-theme', 'dark');
+          }
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.classList.remove('dark');
+          if (document.body) {
+            document.body.classList.remove('dark');
+            document.body.setAttribute('data-theme', 'light');
+          }
+        }
+
+        try {
+          localStorage.setItem('theme', nextTheme);
+        } catch (e) {}
+
+        var btns = document.querySelectorAll('.theme-toggle-btn');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-label', nextTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+          btns[i].setAttribute('title', nextTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        }
+      } catch (err) {
+        console.error('Theme toggle error:', err);
+      }
+    };
+  </script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-glass-container" aria-label="Main Navigation">
+        <a href="../index.html" class="brand-logo" aria-label="RepSnack Home">
+          <img src="../assets/images/RepSnack_Icon_FullSquat_Light_1024.png" alt="RepSnack App Icon" class="brand-icon-light" width="38" height="38">
+          <img src="../assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack App Icon" class="brand-icon-dark" width="38" height="38">
+          <span>RepSnack</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../science.html" class="nav-link">The Science</a></li>
+          <li><a href="../exercises.html" class="nav-link">The 4 Snacks</a></li>
+          <li><a href="../index.html#hardware" class="nav-link">Hardware</a></li>
+          <li><a href="../index.html#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="../support.html" class="nav-link">Support</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" type="button" onclick="toggleRepSnackTheme()" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Get RepSnack</a>
+          <button class="mobile-menu-btn" aria-label="Open Navigation Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="brand-logo">
+          <img src="../assets/images/RepSnack_Icon_FullSquat_Light_1024.png" alt="RepSnack App Icon" class="brand-icon-light" width="32" height="32">
+          <img src="../assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack App Icon" class="brand-icon-dark" width="32" height="32">
+          <span>RepSnack</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button class="theme-toggle-btn" type="button" onclick="toggleRepSnackTheme()" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <button class="mobile-menu-btn mobile-nav-close" aria-label="Close Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../science.html">The Science</a></li>
+        <li><a href="../exercises.html">The 4 Snacks</a></li>
+        <li><a href="../index.html#hardware">Hardware</a></li>
+        <li><a href="../index.html#pricing">Pricing</a></li>
+        <li><a href="../support.html">Support</a></li>
+        <li><a href="../privacy.html">Privacy Policy</a></li>
+        <li><a href="../terms.html">Terms of Use</a></li>
+      </ul>
+      <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary" style="width: 100%;" target="_blank" rel="noopener noreferrer">Download on App Store</a>
+    </div>
+  </div>
+
+  <main class="container container-narrow doc-header">
+    <div style="text-align: left; margin-bottom: 2rem;">
+      <div style="margin-bottom: 1rem;">
+        <a href="../index.html" style="font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;">
+          ← Back to RepSnack
+        </a>
+      </div>
+      <h1 style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: clamp(2rem, 4vw, 2.75rem);">
+        Terms of Use & EULA
+      </h1>
+      <p style="font-size: 0.95rem; color: var(--text-muted);">
+        Effective Date: September 12, 2026 · Last Updated: September 20, 2026
+      </p>
+    </div>
+
+    <article class="doc-article">
+      <div class="callout-box" style="margin-top: 0;">
+        <h4 style="color: var(--primary-teal); margin-bottom: 0.5rem;">Summary of Key Terms</h4>
+        <p>
+          By downloading, accessing, or using <strong>RepSnack</strong> ("the Application"), you agree to be bound by these Terms of Use and End User License Agreement ("Terms"), which incorporate Apple’s Standard Licensed Application EULA. RepSnack is an activity habit coach for general wellness. <strong>It does not provide medical advice, diagnosis, or medical treatment.</strong> Physical movement carries inherent risks, and you assume full responsibility for your physical safety. Subscriptions are billed through your Apple ID account and can be managed or cancelled at any time in Apple Account Settings.
+        </p>
+      </div>
+
+      <h2>1. Acceptance of Terms, Incorporation of Apple EULA & Eligibility</h2>
+      <p>
+        These Terms constitute a legally binding agreement between you and RepSnack ("we", "us", or "our"). This agreement incorporates and supplements the <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Apple Standard Licensed Application End User License Agreement (Standard EULA)</a>. In the event of any direct conflict between these Terms and Apple’s Standard EULA, these Terms shall govern to the maximum extent permissible under applicable law.
+      </p>
+      <p>
+        If you do not agree to these Terms, do not install, copy, or use RepSnack. You affirm that you are at least 18 years of age (or the legal age of majority in your jurisdiction) and fully capable of entering into and complying with these Terms.
+      </p>
+
+      <h2>2. Health Disclaimer & Comprehensive Assumption of Risk</h2>
+      <div class="callout-box callout-box-coral">
+        <h4 style="color: var(--accent-coral); margin-bottom: 0.5rem;">IMPORTANT MEDICAL & SAFETY NOTICE</h4>
+        <p>
+          <strong>RepSnack is NOT a medical device, continuous glucose monitor (CGM), or diagnostic instrument.</strong> RepSnack is designed strictly for general health, micro-break habit formation, and educational wellness purposes.
+        </p>
+      </div>
+      <p>
+        Any references in the Application to published exercise physiology (such as Gao et al., 2024) or illustrative glycemic response curves are provided solely for educational context. They do not constitute medical advice, diagnosis, treatment, or individualized medical counseling.
+      </p>
+
+      <h3>A. Mandatory Physician Clearance</h3>
+      <p>
+        Always consult a qualified healthcare professional before beginning any physical exercise regimen or changing your physical activity levels, especially if you have pre-existing cardiovascular conditions, hypertension, joint injuries, spinal disc issues, diabetes, metabolic disorders, or are pregnant. Never disregard professional medical advice or delay seeking medical care because of information displayed in RepSnack.
+      </p>
+
+      <h3>B. Immediate Discontinuation Warning</h3>
+      <p>
+        <strong>Stop exercising immediately</strong> and contact emergency medical services or your physician if you experience dizziness, lightheadedness, chest tightness or pain, palpitations, acute shortness of breath, joint pain, nausea, or faintness during any exercise snack.
+      </p>
+
+      <h3>C. Voluntary Physical Activity & Express Assumption of Risk</h3>
+      <p>
+        You acknowledge and agree that performing physical movements—including but not limited to bodyweight air squats, wall or desk incline push-ups, standing calf raises, and standing marches—carries inherent, unavoidable risks of physical injury. These risks include, without limitation:
+      </p>
+      <ul>
+        <li>Muscle strains, pulls, cramps, and tears;</li>
+        <li>Joint pain, ligament sprains, and tendon inflammation (knees, hips, ankles, shoulders, wrists);</li>
+        <li>Cardiovascular distress, elevated blood pressure, or fainting;</li>
+        <li>Slips, trips, loss of balance, or falls onto hard surfaces.</li>
+      </ul>
+      <p>
+        <strong>You expressly, knowingly, freely, and voluntarily assume all risks, both known and unknown, associated with your participation in any exercises recommended or tracked by RepSnack.</strong>
+      </p>
+
+      <h3>D. Complete Release and Waiver of Liability</h3>
+      <p>
+        To the fullest extent permitted by applicable law, you hereby release, waive, discharge, and hold harmless RepSnack, its founder Femi Aliu, contributors, licensors, and affiliates from any and all claims, demands, liabilities, suits, damages, expenses, or losses (including personal injury, illness, physical impairment, property damage, or wrongful death) arising out of or connected with your use of the Application, participation in exercise snacks, or reliance on information presented within RepSnack.
+      </p>
+
+      <h3>E. Safe Environment & Equipment Responsibility</h3>
+      <p>
+        You are solely responsible for ensuring that the physical environment in which you exercise is safe, level, dry, well-lit, and cleared of all obstacles, loose wires, and clutter. If performing incline push-ups against a desk, table, or wall, you are solely responsible for confirming that the support structure is stable, non-slippery, structurally sound, and capable of supporting your full bodyweight.
+      </p>
+
+      <h2>3. End User License & Intellectual Property</h2>
+      <p>
+        Subject to your strict compliance with these Terms, RepSnack grants you a personal, revocable, non-exclusive, non-transferable, non-sublicensable license to download, install, and execute the Application on Apple-branded devices (iPhone, Apple Watch, and supported AirPods) that you own or control, in accordance with the Apple Media Services Terms and Conditions.
+      </p>
+      <p>
+        All proprietary rights, title, trademarks, logos, visual assets (including the 4 exercise silhouettes and animated artwork), interface designs, and motion algorithms in the Application remain the exclusive intellectual property of RepSnack. You agree not to copy, decompile, reverse-engineer, modify, or extract the source code of the Application.
+      </p>
+
+      <h2>4. Auto-Renewable Subscriptions, Pricing & Billing</h2>
+      <p>
+        RepSnack offers both a Free Habit Loop tier and optional auto-renewing premium subscription tiers ("RepSnack Pro"):
+      </p>
+
+      <div style="overflow-x: auto; margin: 1.5rem 0;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border-glass-tinted); color: var(--primary-teal);">
+              <th style="padding: 0.75rem 0.5rem;">Plan Name</th>
+              <th style="padding: 0.75rem 0.5rem;">Billing Duration</th>
+              <th style="padding: 0.75rem 0.5rem;">Price (USD)*</th>
+              <th style="padding: 0.75rem 0.5rem;">Trial & Renewal Terms</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border-glass-tinted);">
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">RepSnack Pro Annual</td>
+              <td style="padding: 0.75rem 0.5rem;">1 Year (Annual)</td>
+              <td style="padding: 0.75rem 0.5rem;">$29.99/year ($2.50/mo)</td>
+              <td style="padding: 0.75rem 0.5rem;">Includes 7-day free trial; auto-renews annually</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-glass-tinted);">
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">RepSnack Pro Monthly</td>
+              <td style="padding: 0.75rem 0.5rem;">1 Month (Monthly)</td>
+              <td style="padding: 0.75rem 0.5rem;">$3.99/month</td>
+              <td style="padding: 0.75rem 0.5rem;">Auto-renews monthly unless cancelled</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem 0.5rem; font-weight: 600;">RepSnack Pro Lifetime</td>
+              <td style="padding: 0.75rem 0.5rem;">Perpetual Access</td>
+              <td style="padding: 0.75rem 0.5rem;">$59.99 one-time</td>
+              <td style="padding: 0.75rem 0.5rem;">One-time purchase; no recurring charges</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: -0.5rem;">
+        *Prices in USD. Actual prices may vary depending on your local currency, taxes, and country-specific Apple App Store pricing tiers.
+      </p>
+
+      <h3>A. Payment & Confirmation</h3>
+      <p>
+        Payment will be charged to your Apple ID account at confirmation of purchase. All transactions are securely processed by Apple via the iOS App Store in-app purchase infrastructure.
+      </p>
+
+      <h3>B. Auto-Renewal Terms</h3>
+      <p>
+        <strong>Subscriptions automatically renew unless auto-renew is cancelled at least 24 hours before the end of the current billing period.</strong> Your account will be charged for renewal within 24 hours prior to the end of the current period at the then-current price of the selected plan.
+      </p>
+
+      <h3>C. Free Trial Period & Forfeiture Clause</h3>
+      <p>
+        The RepSnack Pro Annual tier includes an introductory <strong>7-day free trial</strong>. If you do not cancel at least 24 hours prior to the conclusion of the 7-day trial period, your Apple ID account will automatically be billed $29.99 for the 1-year subscription.
+      </p>
+      <p>
+        <strong>Mandatory Trial Forfeiture Notice:</strong> <em>Any unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable.</em>
+      </p>
+
+      <h3>D. Managing and Cancelling Subscriptions</h3>
+      <p>
+        You can manage, adjust, or cancel your subscription at any time directly through your iOS device:
+      </p>
+      <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
+        <li>Open the <strong>Settings</strong> app on your iPhone or iPad.</li>
+        <li>Tap your <strong>Name / Apple ID</strong> at the top.</li>
+        <li>Tap <strong>Subscriptions</strong>.</li>
+        <li>Select <strong>RepSnack</strong>, then tap <strong>Cancel Subscription</strong>.</li>
+      </ol>
+      <p>
+        Cancellation takes effect at the end of your current paid billing period. You will retain access to Pro features until that date.
+      </p>
+
+      <h3>E. Refunds</h3>
+      <p>
+        All refund requests are governed and processed exclusively by Apple in accordance with Apple Media Services Terms and Conditions. To request a refund, please visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>. RepSnack developers do not have direct access to your payment details and cannot issue refunds directly.
+      </p>
+
+      <h3>F. Restoring Purchases</h3>
+      <p>
+        If you change devices, restore your iPhone from a backup, or reinstall RepSnack, you can re-activate your active subscription or lifetime unlock at any time by tapping <strong>"Restore Purchases"</strong> on the in-app Paywall or in the Settings menu.
+      </p>
+
+      <h2>5. Hardware Requirements & Motion Tracking Accuracy</h2>
+      <p>
+        Hands-free rep counting requires compatible Apple hardware (AirPods Pro, AirPods Max, or Apple Watch) with supported iOS and watchOS firmware. 
+      </p>
+      <p>
+        While RepSnack utilizes advanced biomechanical sensor fusion algorithms, motion tracking may occasionally record extra reps or miss reps due to unusual clothing fit, loose earbud placement, or hardware sensor drift. <strong>Rep counts are motivational habit metrics, not laboratory-calibrated scientific measurements.</strong>
+      </p>
+
+      <h2>6. Privacy & Data Handling</h2>
+      <p>
+        Your privacy is paramount. RepSnack operates on a local-first architecture without central user accounts or remote tracking servers. Please consult our <a href="../privacy.html">Privacy Policy</a> for detailed disclosures regarding Apple HealthKit data protections, on-device Vision camera calibration, and calendar event filters.
+      </p>
+
+      <h2>7. Disclaimer of Warranties</h2>
+      <p>
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REPSNACK IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APPLICATION WILL BE UNINTERRUPTED, ACCURATE, ERROR-FREE, OR FREE OF BUGS.
+      </p>
+
+      <h2>8. Limitation of Liability</h2>
+      <p>
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL REPSNACK, ITS FOUNDER, CONTRIBUTORS, EMPLOYEES, AGENTS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES—INCLUDING BUT NOT LIMITED TO PERSONAL INJURY, BODILY HARM, HEALTH IMPAIRMENTS, PAIN AND SUFFERING, LOSS OF PROFITS, DATA LOSS, OR WORK DISRUPTIONS—ARISING OUT OF OR IN CONNECTION WITH YOUR ACCESS TO OR USE OF (OR INABILITY TO ACCESS OR USE) THE APPLICATION.
+      </p>
+      <p>
+        IN NO EVENT SHALL OUR TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS ARISING OUT OF OR RELATING TO THESE TERMS OR THE APPLICATION EXCEED THE GREATER OF FIFTY US DOLLARS ($50.00 USD) OR THE AMOUNT ACTUALLY PAID BY YOU TO REPSNACK IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE CLAIM.
+      </p>
+
+      <h2>9. Indemnification</h2>
+      <p>
+        You agree to defend, indemnify, and hold harmless RepSnack, its founder Femi Aliu, contractors, and agents from and against any third-party claims, damages, liabilities, losses, costs, or expenses (including reasonable attorneys' fees) arising out of or related to your breach of these Terms, your improper or unsafe execution of exercises, or your violation of applicable laws or third-party rights.
+      </p>
+
+      <h2>10. Governing Law & Dispute Resolution</h2>
+      <p>
+        These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of law principles. Any dispute, claim, or controversy arising out of or relating to these Terms or the breach thereof shall be resolved exclusively in the state or federal courts located in the State of Delaware, and you consent to personal jurisdiction therein.
+      </p>
+
+      <h2>11. Severability & Entire Agreement</h2>
+      <p>
+        If any provision of these Terms is found to be unlawful, void, or for any reason unenforceable, that provision will be deemed severable from these Terms and will not affect the validity and enforceability of any remaining provisions. These Terms, together with the Apple Standard EULA and our Privacy Policy, constitute the entire agreement between you and RepSnack regarding the Application.
+      </p>
+
+      <h2>12. Modifications to Terms</h2>
+      <p>
+        We reserve the right to revise these Terms from time to time. When revisions are made, the "Last Updated" date at the top of this document will be updated. Your continued use of RepSnack following any posted updates signifies your acceptance of the revised Terms.
+      </p>
+
+      <h2>13. Contact & Support</h2>
+      <p>
+        If you have questions, feedback, or legal inquiries regarding these Terms of Use, please contact us:
+      </p>
+      <div class="callout-box">
+        <p>
+          <strong>RepSnack Support & Legal</strong><br>
+          Email: <a href="mailto:support@repsnack.com?subject=Terms%20Inquiry">support@repsnack.com</a><br>
+          Subject Line: <em>Terms Inquiry</em><br>
+          Web: <a href="https://repsnack.com">https://repsnack.com</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <img src="../assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack Logo" width="32" height="32">
+            <span style="color: #FFFFFF;">RepSnack</span>
+          </div>
+          <p>The desk-friendly movement coach that uses Apple Watch and AirPods sensor fusion to verify exercise snacks hands-free.</p>
+        </div>
+        <div class="footer-col">
+          <h5>The Science</h5>
+          <ul class="footer-links">
+            <li><a href="../science.html">Sedentary Physiology</a></li>
+            <li><a href="../science.html#gao-study">Gao et al. 2024 Study</a></li>
+            <li><a href="../science.html#soleus-pump">Soleus Muscle Pump</a></li>
+            <li><a href="../exercises.html">Exercise Kinematics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul class="footer-links">
+            <li><a href="https://apps.apple.com/us/app/repsnack/id6797024053" target="_blank" rel="noopener noreferrer">App Store Download</a></li>
+            <li><a href="../index.html#hardware">AirPods Tracking</a></li>
+            <li><a href="../index.html#hardware">Apple Watch App</a></li>
+            <li><a href="../index.html#pricing">Pricing & Tiers</a></li>
+            <li><a href="../support.html">Help Center</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Compliance & Legal</h5>
+          <ul class="footer-links">
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms of Use</a></li>
+            <li><a href="../support.html">Support & SLA</a></li>
+            <li><a href="mailto:support@repsnack.com">support@repsnack.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-disclaimer">
+        <p>© 2026 RepSnack. All rights reserved. Apple, Apple Watch, AirPods, and HealthKit are trademarks of Apple Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

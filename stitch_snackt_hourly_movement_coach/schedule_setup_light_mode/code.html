@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack - Schedule Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5f2c1b",
+                    "surface-dim": "#d8dbd9",
+                    "on-tertiary-fixed": "#370e02",
+                    "inverse-surface": "#2e3130",
+                    "on-secondary-fixed": "#3b0901",
+                    "on-primary-fixed-variant": "#005047",
+                    "outline-variant": "#bec9c5",
+                    "surface-container-low": "#f2f4f2",
+                    "surface-bright": "#f8faf8",
+                    "on-secondary-fixed-variant": "#743422",
+                    "inverse-on-surface": "#eff1ef",
+                    "surface-container": "#eceeec",
+                    "on-background": "#191c1b",
+                    "on-primary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "outline": "#6f7976",
+                    "on-primary-container": "#8ed2c5",
+                    "surface-variant": "#e1e3e1",
+                    "tertiary-fixed-dim": "#ffb59e",
+                    "secondary-fixed-dim": "#ffb4a1",
+                    "secondary-fixed": "#ffdbd1",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1b",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#abf0e2",
+                    "on-tertiary-container": "#ffb29b",
+                    "tertiary-fixed": "#ffdbd0",
+                    "on-surface-variant": "#3f4946",
+                    "on-tertiary-fixed-variant": "#6e3826",
+                    "surface-container-high": "#e6e9e7",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ffa48d",
+                    "background": "#f8faf8",
+                    "secondary": "#914a37",
+                    "inverse-primary": "#8fd3c6",
+                    "surface-tint": "#22695f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0e5c52",
+                    "surface-container-highest": "#e1e3e1",
+                    "surface": "#f8faf8",
+                    "on-secondary-container": "#793826",
+                    "tertiary-container": "#7b4230",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00433b",
+                    "primary-fixed-dim": "#8fd3c6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "card-gap": "12px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-xl-mobile": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(34, 105, 95, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8faf8;
+            -webkit-font-smoothing: antialiased;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed">
+<!-- Top Navigation (Onboarding Suppression Applied: No Global Nav) -->
+<header class="sticky top-0 z-50 w-full bg-surface/40 backdrop-blur-xl border-b border-white/20 px-container-padding py-4 flex justify-between items-center max-w-[640px] mx-auto">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant/60 uppercase tracking-widest">Step 2 of 4</span>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<main class="max-w-[640px] mx-auto px-container-padding pt-10 pb-32">
+<!-- Hero Section -->
+<section class="mb-10">
+<h1 class="font-display-xl-mobile text-display-xl-mobile text-primary tracking-tight mb-3">
+                Define your focus hours.
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                We'll only nudge you for micro-interventions during your active work schedule.
+            </p>
+</section>
+<!-- Schedule Setup Card -->
+<section class="liquid-glass rounded-[32px] p-8 mb-card-gap">
+<div class="space-y-8">
+<!-- Time Range Picker -->
+<div>
+<label class="font-label-sm text-label-sm text-primary uppercase tracking-wider mb-4 block">Work Window</label>
+<div class="flex items-center gap-4">
+<div class="flex-1 bg-surface-container-lowest/50 rounded-2xl p-4 border border-white/40">
+<span class="text-[10px] text-on-surface-variant/70 block uppercase font-bold mb-1">Starts</span>
+<input class="bg-transparent border-none p-0 text-xl font-semibold text-on-surface focus:ring-0 w-full" type="time" value="09:00"/>
+</div>
+<div class="w-4 h-[1px] bg-outline-variant"></div>
+<div class="flex-1 bg-surface-container-lowest/50 rounded-2xl p-4 border border-white/40">
+<span class="text-[10px] text-on-surface-variant/70 block uppercase font-bold mb-1">Ends</span>
+<input class="bg-transparent border-none p-0 text-xl font-semibold text-on-surface focus:ring-0 w-full" type="time" value="17:00"/>
+</div>
+</div>
+</div>
+<!-- Day Picker -->
+<div>
+<label class="font-label-sm text-label-sm text-primary uppercase tracking-wider mb-4 block">Working Days</label>
+<div class="flex justify-between">
+<!-- Monday to Friday pre-selected in active deep teal -->
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-primary text-on-primary shadow-lg shadow-primary/20">M</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-primary text-on-primary shadow-lg shadow-primary/20">T</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-primary text-on-primary shadow-lg shadow-primary/20">W</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-primary text-on-primary shadow-lg shadow-primary/20">T</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-primary text-on-primary shadow-lg shadow-primary/20">F</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-surface-container text-on-surface-variant/40">S</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 bg-surface-container text-on-surface-variant/40">S</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Intelligent Toggles -->
+<section class="space-y-3">
+<!-- Focus Toggle -->
+<div class="liquid-glass rounded-3xl p-5 flex items-start gap-4 transition-transform active:scale-95 duration-200">
+<div class="mt-1 w-12 h-12 bg-primary-container/20 rounded-2xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">target</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Auto-detect using Work Focus</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Uses your iOS focus status to intelligently find restorative breaks when you need them most.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Calendar Toggle -->
+<div class="liquid-glass rounded-3xl p-5 flex items-start gap-4 transition-transform active:scale-95 duration-200">
+<div class="mt-1 w-12 h-12 bg-secondary-container/20 rounded-2xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Pause during meetings</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-snug">Syncs with your iCloud or Google calendar to avoid interruptions during important calls.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+<!-- Illustration / Mood Section -->
+<section class="mt-12 opacity-80 group">
+<div class="rounded-[40px] overflow-hidden aspect-[4/3] bg-surface-container relative">
+<img class="w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105" data-alt="A serene, minimalist 3D render of a modern home office desk during a peaceful morning. Soft morning light filters through a sheer curtain, illuminating a clean wooden desk with a ceramic mug and a single green leaf in a glass vase. The aesthetic is extremely high-end editorial, with a palette of soft whites, pale teals, and warm wood tones. The mood is calm, restorative, and perfectly balanced for productivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW7T70Rd1tbqZmS88MR_QAQI9UBUqOmJUjMk5wCmJNXN15R61W3lPdWYuntwGOahnclSUHEsfv_R-Od_tyKAE0JIMiPo55U75xjBH_LyO2X6T8XRm_Xc3orB46kswOj8bBWNOJG30JYSAl-QPi8iJF-_6WAgOl2d7TXcvrntMTIsa900ZZC6CiFYv4RlPnPCsIMzexIR0dWaWGRgkj_QbZwHKWo1TkCbXpoArThJxTa1d4te_8poSH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+</section>
+</main>
+<!-- Fixed Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface/60 backdrop-blur-3xl border-t border-white/20 p-container-padding flex flex-col items-center max-w-[640px] left-1/2 -translate-x-1/2 pb-10">
+<button class="w-full bg-primary text-on-primary font-headline-lg-mobile text-headline-lg-mobile py-4 rounded-full shadow-[0_20px_40px_rgba(0,67,59,0.2)] transition-all active:scale-95 flex items-center justify-center gap-2 group">
+            Save Schedule
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="mt-4 font-label-sm text-label-sm text-on-surface-variant/60 hover:text-primary transition-colors">
+            Set up later in settings
+        </button>
+</footer>
+<script>
+        // Simple Interaction logic for Day Picker
+        document.querySelectorAll('button.w-10.h-10').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('bg-primary');
+                this.classList.toggle('text-on-primary');
+                this.classList.toggle('shadow-lg');
+                this.classList.toggle('shadow-primary/20');
+                
+                this.classList.toggle('bg-surface-container');
+                this.classList.toggle('text-on-surface-variant/40');
+            });
+        });
+
+        // Hover scale effect for toggles
+        document.querySelectorAll('.liquid-glass').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

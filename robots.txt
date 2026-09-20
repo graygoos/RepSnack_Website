@@ -1,0 +1,25 @@
+# RepSnack Robots.txt — Optimized for Web & AI Answer Engine Crawlers
+User-agent: *
+Allow: /
+
+# Dedicated Permissions for AI Search & Answer Engines (AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap Location
+Sitemap: https://repsnack.com/sitemap.xml

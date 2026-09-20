@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RepSnack - Exercise Picker</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5f2c1b",
+                    "surface-dim": "#d8dbd9",
+                    "on-tertiary-fixed": "#370e02",
+                    "inverse-surface": "#2e3130",
+                    "on-secondary-fixed": "#3b0901",
+                    "on-primary-fixed-variant": "#005047",
+                    "outline-variant": "#bec9c5",
+                    "surface-container-low": "#f2f4f2",
+                    "surface-bright": "#f8faf8",
+                    "on-secondary-fixed-variant": "#743422",
+                    "inverse-on-surface": "#eff1ef",
+                    "surface-container": "#eceeec",
+                    "on-background": "#191c1b",
+                    "on-primary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "outline": "#6f7976",
+                    "on-primary-container": "#8ed2c5",
+                    "surface-variant": "#e1e3e1",
+                    "tertiary-fixed-dim": "#ffb59e",
+                    "secondary-fixed-dim": "#ffb4a1",
+                    "secondary-fixed": "#ffdbd1",
+                    "error": "#ba1a1a",
+                    "on-surface": "#191c1b",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#abf0e2",
+                    "on-tertiary-container": "#ffb29b",
+                    "tertiary-fixed": "#ffdbd0",
+                    "on-surface-variant": "#3f4946",
+                    "on-tertiary-fixed-variant": "#6e3826",
+                    "surface-container-high": "#e6e9e7",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ffa48d",
+                    "background": "#f8faf8",
+                    "secondary": "#914a37",
+                    "inverse-primary": "#8fd3c6",
+                    "surface-tint": "#22695f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0e5c52",
+                    "surface-container-highest": "#e1e3e1",
+                    "surface": "#f8faf8",
+                    "on-secondary-container": "#793826",
+                    "tertiary-container": "#7b4230",
+                    "on-secondary": "#ffffff",
+                    "primary": "#00433b",
+                    "primary-fixed-dim": "#8fd3c6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "card-gap": "12px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-xl-mobile": ["Plus Jakarta Sans"],
+                    "display-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["36px", {"lineHeight": "42px", "fontWeight": "700"}],
+                    "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 30px rgba(34, 105, 95, 0.04);
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: #f8faf8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .active-ring {
+            box-shadow: 0 0 0 2px #00433b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-on-background font-body-md">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/40 dark:bg-surface-container/10 docked full-width top-0 sticky backdrop-blur-xl border-b border-white/20 z-50">
+<div class="flex justify-between items-center w-full px-container-padding py-unit max-w-[640px] mx-auto h-16">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<h1 class="font-display-xl-mobile text-headline-lg-mobile font-bold text-primary tracking-tight">RepSnack</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist user profile avatar showing a soft-lit, professional portrait in high-key lighting, maintaining a calm and modern editorial aesthetic with subtle deep teal color hints in the background to match the RepSnack branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwfJlOaBjZhupz2x_2XXw7DxFT9tbE-yqikUsAnpLT9pvBCVx92ePy1cLHWj-gRdLP4Dd0HKi5WHQBBQ_EfeISxIRodWSJC-O-jP22oNtnxi1pOts7bIWjbH0ZEVmDUx10V4v2WVFwHYx1KiErM2fjMajhuRYbho7dB0zgVluHKrrtrnA2Zf6SxKuimOio4GX-1v9CAP9fObgGphPHjZvbPBhA8BiozP4vwI-Y7S55F6hyps6Sn9ho"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-[640px] mx-auto px-container-padding pt-8 pb-32">
+<!-- Header Section -->
+<div class="mb-10 fade-in">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Choose Exercise</h2>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                Select a micro-intervention to reset your posture and boost focus.
+            </p>
+</div>
+<!-- Exercise Grid -->
+<div class="grid grid-cols-1 gap-gutter">
+<!-- Card 1: Air Squats -->
+<button class="liquid-glass rounded-xl p-5 flex items-center justify-between group transition-all duration-300 hover:bg-white/60 active:scale-[0.98] fade-in" style="animation-delay: 0.1s;">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 bg-primary-fixed/30 rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Air Squats" class="w-14 h-14 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuCVz6pN_wND0Kem0BrS3RMcoZtRx7iuvjH79oq45WKZauJLfwB1py_N8fecvJdApzZrXtviIgcFXGgj3aslvD59XHOcPrBSEKEKUD1vYKjE99lDU9Iy5gygUbRv-2mmjHaQWx_HpoI0Bni6ttLfaZrnFwvo1ICbHEHzNNcEkomkm-w2zSAxdAWIYUAqB8KRREHZ3n31Bqd_C9TRcggCRpv6B4TuKXoZmQ2OAOLcKNny1Ztr4ftaMWe_A"/>
+</div>
+<div class="text-left">
+<span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase mb-1 block">Lower Body</span>
+<h3 class="font-headline-lg text-[18px] text-primary">Air Squats</h3>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 bg-primary-container/20 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-[11px] text-primary-container">Best Detection</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:translate-x-1">chevron_right</span>
+</button>
+<!-- Card 2: Calf Raises -->
+<button class="liquid-glass rounded-xl p-5 flex items-center justify-between group transition-all duration-300 hover:bg-white/60 active:scale-[0.98] fade-in" style="animation-delay: 0.2s;">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 bg-primary-fixed/30 rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Calf Raises" class="w-14 h-14 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLtJgIW8Z1NVPeB39pHeOhFWn8yMRqcoq2s6hMT0je92xFPUB4kdIgqhpd-12rAaa03qTkBom5MGeaUpVyz8XPXUrCuj5zgDe0_TejDkS--V1D3xc8cKAnFCa4a8RKldQEPbI4t9N5l17BBNToVtdqsV0IT01UGwggvlZ6TkyJF0XgIXgKQrcKZLJzv_iZshAyx9wENcdgbuB6CevRf_SnvMWRCEpYS0gmC-jtgcodbCP7lSZ03LPJvoBaM"/>
+</div>
+<div class="text-left">
+<span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase mb-1 block">Lower Body</span>
+<h3 class="font-headline-lg text-[18px] text-primary">Calf Raises</h3>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 bg-surface-variant/50 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">check_circle</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Standard Detection</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:translate-x-1">chevron_right</span>
+</button>
+<!-- Card 3: Incline Push-Ups -->
+<button class="liquid-glass rounded-xl p-5 flex items-center justify-between group transition-all duration-300 hover:bg-white/60 active:scale-[0.98] fade-in" style="animation-delay: 0.3s;">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 bg-primary-fixed/30 rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Incline Push-Ups" class="w-14 h-14 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLsquiRu5sEgEL7IW3WLu3K5zulOuT4lnaYqKQOPHlJ_gPi13UEa_pyfTFDuGxB-JrowX1FDuendFa_82h3Ne3X6jJokQYthI5QZLLRxeTuWC_98HedmG921T0GX6VoyJtIuLXW2gKjjhXgwxBCK3UHLOaQWRxhhR6MRqklms737yBNy3BKnQWm-gymaBdi9KB6m6NHy61Ua-k3MjFUUyAWexo8WZx5WuTdGP7PDgufE9gNU-OhtalFdu74"/>
+</div>
+<div class="text-left">
+<span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase mb-1 block">Upper Body</span>
+<h3 class="font-headline-lg text-[18px] text-primary">Incline Push-Ups</h3>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 bg-primary-container/20 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-[11px] text-primary-container">Best Detection</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:translate-x-1">chevron_right</span>
+</button>
+<!-- Card 4: Standing Marches -->
+<button class="liquid-glass rounded-xl p-5 flex items-center justify-between group transition-all duration-300 hover:bg-white/60 active:scale-[0.98] fade-in" style="animation-delay: 0.4s;">
+<div class="flex items-center gap-4">
+<div class="w-20 h-20 bg-primary-fixed/30 rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Standing Marches" class="w-14 h-14 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuUdh_oKtIh4s0JWYrC88GbvfEeI5bm2wrknP-rSf_tfAcu6aDQwq5UB71OAC22q_doK1zkdGBAi9IiklOlhk9CUwy6ZFYPXHlWh5tQWgF6IAzPEIbaHEZYzSpkLtVay5dwQVHq4SottQqY3Sjrir2aY_8g4yg5Xd_ZOYUbn_t9l9dc9kcAbrjrl0Zhg7UPZf22aCIa0r2JFuApcKzxqvFUAaKVsKLtRWEhPLjqbfWlOQU6fToPjD6K7-Q"/>
+</div>
+<div class="text-left">
+<span class="font-label-sm text-label-sm text-secondary tracking-wide uppercase mb-1 block">Full Body</span>
+<h3 class="font-headline-lg text-[18px] text-primary">Standing Marches</h3>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 bg-surface-variant/50 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">check_circle</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Standard Detection</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:translate-x-1">chevron_right</span>
+</button>
+</div>
+<!-- Descriptive Quote / Tip -->
+<div class="mt-12 p-6 rounded-2xl bg-primary-container/10 border border-primary/5 fade-in" style="animation-delay: 0.5s;">
+<p class="font-body-md text-on-primary-fixed-variant italic text-center">
+                "Movement is the medicine for creating change in a person's physical, emotional, and mental states."
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 max-w-[640px] left-1/2 -translate-x-1/2 bg-surface/60 backdrop-blur-3xl border-t border-white/20 shadow-[0_-4px_30px_rgba(34,105,95,0.05)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 scale-90 transition-all duration-300 ease-out" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<!-- Floating Action Button (Suppressed per logic: Task-Focused Screen) -->
+<script>
+        // Simple entry animations for list items
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

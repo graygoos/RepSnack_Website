@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RepSnack — Ten reps an hour. Verified, not guessed.</title>
+  <meta name="description" content="RepSnack is the desk-friendly movement coach that uses Apple Watch and AirPods sensor fusion to count exercise snacks hands-free. Counteract sitting and flatten glucose spikes.">
+  <meta name="keywords" content="RepSnack, exercise snacks, desk workout, hourly squats, AirPods motion rep counter, sitting disease, Gao et al 2024, glucose spikes sitting, Apple Watch rep counter">
+  <link rel="canonical" href="https://repsnack.com/">
+
+  <!-- OpenGraph / Social Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://repsnack.com/">
+  <meta property="og:title" content="RepSnack — Ten reps an hour. Verified, not guessed.">
+  <meta property="og:description" content="Desk-friendly movement coach that uses your Apple Watch and AirPods to verify exercise snacks hands-free. 40 seconds an hour to counter sitting.">
+  <meta property="og:image" content="https://repsnack.com/assets/images/mockup_today.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://repsnack.com/">
+  <meta name="twitter:title" content="RepSnack — Ten reps an hour. Verified, not guessed.">
+  <meta name="twitter:description" content="Desk-friendly movement coach that uses Apple Watch and AirPods to verify exercise snacks hands-free.">
+  <meta name="twitter:image" content="https://repsnack.com/assets/images/mockup_today.png">
+
+  <!-- Favicon & Theme Color -->
+  <link rel="icon" type="image/png" href="assets/images/RepSnack_Icon_FullSquat_Light_1024.png">
+  <link rel="apple-touch-icon" href="assets/images/RepSnack_Icon_FullSquat_Light_1024.png">
+  <meta name="theme-color" content="#0E5C52">
+
+  <!-- Theme Init Script to prevent FOUC & provide instant toggle -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = null;
+        try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark');
+        }
+      } catch (err) {}
+    })();
+
+    var _repSnackHeadToggle = 0;
+    window.toggleRepSnackTheme = function() {
+      var now = Date.now();
+      if (now - _repSnackHeadToggle < 250) {
+        return; // Guard against rapid duplicate firing
+      }
+      _repSnackHeadToggle = now;
+
+      try {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                     document.documentElement.classList.contains('dark');
+        var nextTheme = isDark ? 'light' : 'dark';
+
+        if (nextTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark');
+          if (document.body) {
+            document.body.classList.add('dark');
+            document.body.setAttribute('data-theme', 'dark');
+          }
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          document.documentElement.classList.remove('dark');
+          if (document.body) {
+            document.body.classList.remove('dark');
+            document.body.setAttribute('data-theme', 'light');
+          }
+        }
+
+        try {
+          localStorage.setItem('theme', nextTheme);
+        } catch (e) {}
+
+        var btns = document.querySelectorAll('.theme-toggle-btn');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-label', nextTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+          btns[i].setAttribute('title', nextTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        }
+      } catch (err) {
+        console.error('Theme toggle error:', err);
+      }
+    };
+  </script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Structured Data / JSON-LD for Search & AI Answer Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://repsnack.com/#app",
+        "name": "RepSnack",
+        "operatingSystem": "iOS 18.0+, watchOS 11.0+",
+        "applicationCategory": "HealthApplication",
+        "downloadUrl": "https://apps.apple.com/us/app/repsnack/id6797024053",
+        "installUrl": "https://apps.apple.com/us/app/repsnack/id6797024053",
+        "description": "Hourly movement coach for desk workers using Apple Watch and AirPods sensor fusion to verify bodyweight reps hands-free.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Femi Aliu",
+          "jobTitle": "Founder & iOS Engineer",
+          "url": "https://www.linkedin.com/in/femialiu"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://repsnack.com/#website",
+        "url": "https://repsnack.com/",
+        "name": "RepSnack",
+        "description": "Official website for RepSnack desk exercise snacks app.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "RepSnack",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://repsnack.com/assets/images/RepSnack_Icon_FullSquat_Light_1024.png"
+          }
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://repsnack.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can 10 squats an hour reduce blood sugar spikes from sitting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A 2024 study published by Gao et al. in the Scandinavian Journal of Medicine & Science in Sports demonstrated that performing 10 bodyweight squats every 45 to 60 minutes across an 8.5-hour workday produced an approximate 21% reduction in post-meal blood glucose spikes compared to uninterrupted sitting."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does RepSnack count squats hands-free without a camera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "RepSnack uses Apple CoreMotion Sensor Fusion. By reading head kinematics via AirPods Pro (CMHeadphoneMotionManager), wrist acceleration via Apple Watch, or vertical torso displacement via an iPhone in your pocket, RepSnack counts reps automatically with zero cameras or video recording."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need an Apple Watch or AirPods to use RepSnack?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. While AirPods and Apple Watch enable hands-free automatic detection, RepSnack also detects reps using your iPhone in your pocket, or provides a quick one-tap manual counter."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What makes RepSnack different from a 7-minute workout or Pomodoro timer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "RepSnack is engineered specifically for desk workers. Unlike 7-minute workouts that require changing clothes and sweating, RepSnack prescribes 40-second micro-interventions (10 reps) that activate the soleus muscle pump and GLUT4 glucose transporters without elevated heart rates. Unlike Pomodoro timers, RepSnack verifies actual physical movement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does RepSnack protect my privacy and HealthKit data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "RepSnack processes 100% of sensor data on-device in volatile memory. No motion streams, accelerometer readings, or calendar details are sent to external servers. Mindful Minutes are written locally to Apple Health, and RepSnack includes zero third-party advertising SDKs or data brokers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does RepSnack avoid interrupting important work meetings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "RepSnack features Calendar-Aware Pausing. By checking local event times on your iOS calendar, RepSnack automatically suppresses audio and haptic nudges during meetings with attendees or video call links."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-glass-container" aria-label="Main Navigation">
+        <a href="index.html" class="brand-logo" aria-label="RepSnack Home">
+          <img src="assets/images/RepSnack_Icon_FullSquat_Light_1024.png" alt="RepSnack App Icon" class="brand-icon-light" width="38" height="38">
+          <img src="assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack App Icon" class="brand-icon-dark" width="38" height="38">
+          <span>RepSnack</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#science" class="nav-link">The Science</a></li>
+          <li><a href="#exercises" class="nav-link">The 4 Snacks</a></li>
+          <li><a href="#hardware" class="nav-link">Hardware Detection</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="support.html" class="nav-link">Support</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" type="button" onclick="toggleRepSnackTheme()" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Get RepSnack</a>
+          <button class="mobile-menu-btn" aria-label="Open Navigation Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" aria-hidden="true">
+    <div class="mobile-nav-drawer">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="brand-logo">
+          <img src="assets/images/RepSnack_Icon_FullSquat_Light_1024.png" alt="RepSnack App Icon" class="brand-icon-light" width="32" height="32">
+          <img src="assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack App Icon" class="brand-icon-dark" width="32" height="32">
+          <span>RepSnack</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button class="theme-toggle-btn" type="button" onclick="toggleRepSnackTheme()" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <button class="mobile-menu-btn mobile-nav-close" aria-label="Close Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#science">The Science</a></li>
+        <li><a href="science.html">Science Deep-Dive</a></li>
+        <li><a href="#exercises">The 4 Snacks</a></li>
+        <li><a href="exercises.html">Exercise Kinematics</a></li>
+        <li><a href="#hardware">Hardware Detection</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+      </ul>
+      <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary" style="width: 100%;" target="_blank" rel="noopener noreferrer">Download on App Store</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="section hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span class="badge badge-mint">Liquid Vitality · Built for iOS 18 & watchOS 11</span>
+            </div>
+            <h1 class="hero-title">
+              Ten reps an hour.<br>
+              <span class="highlight">Verified, not guessed.</span>
+            </h1>
+            <p class="hero-subtitle">
+              The desk-friendly movement coach that uses your Apple Watch and AirPods to verify your exercise snacks hands-free. 40 seconds to counteract sitting and stabilize blood sugar.
+            </p>
+            <div class="hero-ctas">
+              <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.65-.79 1.1-1.9 0.98-3-.95.04-2.1 0.63-2.77 1.42-.59.68-1.12 1.8-0.98 2.87 1.07.08 2.13-.53 2.77-1.29z"/></svg>
+                Download on the App Store
+              </a>
+              <a href="#science" class="btn btn-secondary btn-lg">Read the Science</a>
+            </div>
+            <div class="hero-trust-badges">
+              <div class="trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>100% On-Device Processing</span>
+              </div>
+              <div class="trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+                <span>Zero Camera Surveillance</span>
+              </div>
+              <div class="trust-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span>Apple Health Mindful Minutes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Mockup Preview -->
+          <div class="hero-mockup-wrapper">
+            <div class="floating-chip floating-chip-top">
+              <span style="font-size: 1.25rem;">⏱</span>
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Live Activity</div>
+                <div style="font-size: 0.95rem; font-weight: 700; color: var(--primary-teal);">Next snack in 24m</div>
+              </div>
+            </div>
+
+            <div class="phone-device-card">
+              <div class="phone-screen">
+                <img src="assets/images/mockup_today.png" alt="RepSnack Today Screen Mockup" width="340" height="740" fetchpriority="high">
+              </div>
+            </div>
+
+            <div class="floating-chip floating-chip-bottom">
+              <span style="font-size: 1.25rem;">🎧</span>
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">AirPods Sensor Fusion</div>
+                <div style="font-size: 0.95rem; font-weight: 700; color: var(--primary-teal);">Rep 8/10 Counted</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Science Section (Gao et al. 2024 & Glucose Curve) -->
+    <section class="section science-section" id="science">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 3rem;">
+          <span class="badge badge-coral">Peer-Reviewed Exercise Science</span>
+          <h2 style="margin-top: 1rem; margin-bottom: 1rem;">The Science of Desk Exercise Snacks</h2>
+          <p>
+            Most desk workers fall into the <strong>"Active Sedentary Trap"</strong>: a 30-minute morning gym session does not protect cardiovascular and metabolic health against 9 hours of continuous sitting.
+          </p>
+        </div>
+
+        <!-- Interactive Glucose Response Card -->
+        <div class="chart-card">
+          <div class="chart-controls">
+            <div>
+              <h3 style="font-size: 1.35rem; color: var(--primary-teal); margin-bottom: 0.25rem;">Post-Meal Glucose Excursion</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Simulated glycemic response based on Gao et al. (2024)</p>
+            </div>
+
+            <div class="chart-toggle-group">
+              <button class="chart-toggle-btn active" data-mode="both">Compare Both</button>
+              <button class="chart-toggle-btn" data-mode="sitting">Sitting Only</button>
+              <button class="chart-toggle-btn" data-mode="repsnack">10 Hourly Squats</button>
+            </div>
+          </div>
+
+          <div class="chart-legend">
+            <div class="legend-item">
+              <span class="legend-color-dot legend-coral"></span>
+              <span>Uninterrupted Sitting (Severe Spike)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color-dot legend-teal"></span>
+              <span>10 Squats Every Hour (RepSnack Stabilized)</span>
+            </div>
+          </div>
+
+          <!-- SVG Chart -->
+          <div class="glucose-svg-container">
+            <svg class="glucose-svg" viewBox="0 0 800 240" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="coralGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#E8917A" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#E8917A" stop-opacity="0.0"/>
+                </linearGradient>
+                <linearGradient id="tealGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0E5C52" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#0E5C52" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Baseline grid lines -->
+              <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <line x1="0" y1="120" x2="800" y2="120" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+              <line x1="0" y1="40" x2="800" y2="40" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
+
+              <!-- Meal Marker at X=160 -->
+              <line x1="160" y1="20" x2="160" y2="210" stroke="#6F7976" stroke-width="1.5" stroke-dasharray="2 3"/>
+              <text x="165" y="32" font-size="11" fill="#6F7976" font-weight="600">Lunch Meal</text>
+
+              <!-- Uncontrolled Sitting Area & Curve -->
+              <path class="fill-uncontrolled" d="M 40 200 Q 160 200, 200 180 Q 280 20, 380 45 Q 520 80, 680 185 T 780 200 L 780 200 L 40 200 Z" fill="url(#coralGradient)" opacity="0.25" style="transition: opacity 0.4s ease;"/>
+              <path class="curve-uncontrolled" d="M 40 200 Q 160 200, 200 180 Q 280 20, 380 45 Q 520 80, 680 185 T 780 200"/>
+
+              <!-- RepSnack Controlled Area & Curve -->
+              <path class="fill-controlled" d="M 40 200 Q 160 200, 200 185 Q 280 90, 380 110 Q 520 135, 680 190 T 780 200 L 780 200 L 40 200 Z" fill="url(#tealGradient)" opacity="0.35" style="transition: opacity 0.4s ease;"/>
+              <path class="curve-controlled" d="M 40 200 Q 160 200, 200 185 Q 280 90, 380 110 Q 520 135, 680 190 T 780 200"/>
+            </svg>
+          </div>
+
+          <!-- Dynamic Status / Stat Bar -->
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: rgba(14, 92, 82, 0.04); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-top: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="stat-glucose-reduction" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--primary-teal);">~21%</span>
+              <div style="font-size: 0.88rem; font-weight: 500; color: var(--text-secondary);" class="stat-curve-status">
+                Direct comparison: Sitting vs. 10 Hourly Squats (Gao et al., 2024)
+              </div>
+            </div>
+            <a href="science.html" style="font-size: 0.88rem; font-weight: 600; color: var(--primary-teal); display: inline-flex; align-items: center; gap: 0.35rem;">
+              Read Study Paper Breakdown <span>→</span>
+            </a>
+          </div>
+
+          <p class="chart-caption">
+            *Illustrative — based on published research (Gao et al., 2024, Scandinavian Journal of Medicine & Science in Sports), not a personal diagnostic medical reading.
+          </p>
+        </div>
+
+        <!-- 3 Pillars Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem;">
+          <div class="glass-card">
+            <h4 style="color: var(--primary-teal); margin-bottom: 0.5rem;">The 21% Finding</h4>
+            <p style="font-size: 0.95rem;">
+              Gao et al. (2024) discovered that interrupting sitting with 10 bodyweight squats every 45–60 minutes lowered postprandial glucose excursions by <strong>~21%</strong> across an 8.5-hour workday.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h4 style="color: var(--primary-teal); margin-bottom: 0.5rem;">The Soleus Muscle Pump</h4>
+            <p style="font-size: 0.95rem;">
+              Your calf and thigh muscles act as metabolic sponges. Contractions activate GLUT4 glucose transporters <em>independently of insulin</em>, pulling glucose directly from your bloodstream without fatigue.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h4 style="color: var(--primary-teal); margin-bottom: 0.5rem;">40 Seconds per Bout</h4>
+            <p style="font-size: 0.95rem;">
+              You do not need gym clothes, heart-rate spikes, or sweaty 45-minute classes. Just 40 seconds of intentional movement keeps muscle gene expression switched on all day long.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 4 Core Snacks (Animated Silhouettes) -->
+    <section class="section" id="exercises">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 1.5rem;">
+          <span class="badge badge-mint">The Movements</span>
+          <h2 style="margin-top: 1rem; margin-bottom: 1rem;">Four Desk-Friendly Exercise Snacks</h2>
+          <p>
+            Designed specifically for office and remote work environments. Zero equipment, zero awkward floor positions, verified in real-time by Apple sensors.
+          </p>
+        </div>
+
+        <div class="exercises-grid">
+          <!-- Air Squats -->
+          <div class="exercise-card">
+            <div class="exercise-media-frame">
+              <img src="assets/images/exercises/AirSquat_WithArc.gif" alt="Air Squat Animation" loading="lazy">
+            </div>
+            <h3 class="exercise-name">Air Squats</h3>
+            <div class="exercise-target">Quads · Glutes · Soleus</div>
+            <p class="exercise-desc">
+              Upright torso with a controlled 90° knee bend. Stimulates maximum leg musculature to clear post-meal glucose spikes.
+            </p>
+            <div class="exercise-sensor-tag">
+              <span>🎧 AirPods Vertical Tracking</span>
+            </div>
+          </div>
+
+          <!-- Calf Raises -->
+          <div class="exercise-card">
+            <div class="exercise-media-frame">
+              <img src="assets/images/exercises/CalfRaise_WithArc.gif" alt="Calf Raise Animation" loading="lazy">
+            </div>
+            <h3 class="exercise-name">Calf Raises</h3>
+            <div class="exercise-target">Soleus · Gastrocnemius</div>
+            <p class="exercise-desc">
+              Standing tall with heel elevations off the floor line. Activates the specialized soleus oxidative pump silently during Zoom calls.
+            </p>
+            <div class="exercise-sensor-tag">
+              <span>⌚ Apple Watch Kinematics</span>
+            </div>
+          </div>
+
+          <!-- Incline Push-Ups -->
+          <div class="exercise-card">
+            <div class="exercise-media-frame">
+              <img src="assets/images/exercises/InclinePushUp_WithArc.gif" alt="Incline Push-Up Animation" loading="lazy">
+            </div>
+            <h3 class="exercise-name">Incline Push-Ups</h3>
+            <div class="exercise-target">Pectorals · Triceps · Core</div>
+            <p class="exercise-desc">
+              Hands planted on a sturdy desk edge at a 45° angle. Reverses hunch posture and stimulates upper-body kinetic chains without getting on the floor.
+            </p>
+            <div class="exercise-sensor-tag">
+              <span>📱 Pocket Gyroscope</span>
+            </div>
+          </div>
+
+          <!-- Standing Marches -->
+          <div class="exercise-card">
+            <div class="exercise-media-frame">
+              <img src="assets/images/exercises/StandingMarch_WithArc.gif" alt="Standing March Animation" loading="lazy">
+            </div>
+            <h3 class="exercise-name">Standing Marches</h3>
+            <div class="exercise-target">Hip Flexors · Lower Abs</div>
+            <p class="exercise-desc">
+              Rhythmic knee drives to hip level (90° bend). Decompresses tight lumbar vertebrae and reactivates dormant hip flexors from long sitting blocks.
+            </p>
+            <div class="exercise-sensor-tag">
+              <span>🎧 AirPods Cadence Sync</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="exercises.html" class="btn btn-secondary">
+            View Complete Biomechanical & Kinematic Guide <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hands-Free Hardware Detection Section -->
+    <section class="section" id="hardware" style="background: rgba(14, 92, 82, 0.02);">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 3rem;">
+          <span class="badge badge-mint">Apple Sensor Fusion</span>
+          <h2 style="margin-top: 1rem; margin-bottom: 1rem;">Verified, Not Guessed. Zero Cameras.</h2>
+          <p>
+            Fitness apps make you awkwardly prop up your camera or manually tap counters. RepSnack uses spatial audio motion sensors and accelerometers to track reps passively.
+          </p>
+        </div>
+
+        <div class="hardware-grid">
+          <!-- AirPods Pro / Max -->
+          <div class="glass-card hardware-card">
+            <div class="hardware-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+            </div>
+            <h3 style="color: var(--primary-teal); margin-bottom: 0.5rem;">AirPods Pro & Max</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+              Using <code>CMHeadphoneMotionManager</code>, RepSnack measures 6-axis spatial head displacement. It detects the sinusoidal curve of a squat or march with millimeter accuracy.
+            </p>
+            <ul style="list-style: none; font-size: 0.88rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+              <li>✓ Real-time spatial tracking</li>
+              <li>✓ Spoken rep feedback in ear</li>
+              <li>✓ No camera permission needed</li>
+            </ul>
+          </div>
+
+          <!-- Apple Watch -->
+          <div class="glass-card hardware-card">
+            <div class="hardware-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="12" height="16" rx="3"/><path d="M10 1h4"/><path d="M10 23h4"/></svg>
+            </div>
+            <h3 style="color: var(--primary-teal); margin-bottom: 0.5rem;">Apple Watch</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+              Discreet wrist haptics alert you quietly when it is time to move. Complications display your hourly goal, and wrist kinematics track push-ups and calf raises in quiet meetings.
+            </p>
+            <ul style="list-style: none; font-size: 0.88rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+              <li>✓ Silent taptic nudges</li>
+              <li>✓ Watch face complications</li>
+              <li>✓ Stand hour credit sync</li>
+            </ul>
+          </div>
+
+          <!-- Pocketed iPhone -->
+          <div class="glass-card hardware-card">
+            <div class="hardware-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3 style="color: var(--primary-teal); margin-bottom: 0.5rem;">Pocketed iPhone</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+              Don’t have AirPods in? Just slide your iPhone into your front pocket. Torso displacement and pelvic tilt accurately verify your 10 squat reps hands-free.
+            </p>
+            <ul style="list-style: none; font-size: 0.88rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.4rem;">
+              <li>✓ Front pocket motion fusion</li>
+              <li>✓ Dynamic Island countdown</li>
+              <li>✓ Live Activity lock screen</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Smart Calendar-Aware Pausing Callout -->
+        <div class="glass-card" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; border-left: 4px solid var(--accent-mint);">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-teal)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <h4 style="color: var(--primary-teal); font-size: 1.15rem;">Calendar-Aware Pausing</h4>
+          </div>
+          <p style="font-size: 0.98rem; margin: 0;">
+            Never get buzzed during an executive presentation. RepSnack checks your local device calendar. If you have an event with other attendees or a Zoom/Meet link, nudges pause automatically. If 2 hours pass without a break, it offers a gentle check-in.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Habit Loop Tiers (RevenueCat Powered) -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 1.5rem;">
+          <span class="badge badge-mint">Transparent Monetization</span>
+          <h2 style="margin-top: 1rem; margin-bottom: 1rem;">Gate the Ceiling, Not the Floor</h2>
+          <p>
+            The core habit loop is 100% free forever. Upgrade only when your fitness improves and you want personalized targets, Apple Watch complications, and audio feedback.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Free Tier -->
+          <div class="glass-card pricing-card">
+            <h3 style="color: var(--primary-teal); font-size: 1.5rem;">Free Tier</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">The Complete Habit Loop</p>
+            <div class="price-amount">$0</div>
+            <div class="price-period">Free forever · No credit card required</div>
+
+            <ul class="feature-list">
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Unlimited hourly movement reminders</span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>All 4 core exercise snacks</span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Hands-free AirPods rep counting</span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Fixed 10-rep science target</span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Dynamic Island & Live Activities</span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>30-day activity history</span>
+              </li>
+              <li class="feature-item disabled">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Custom rep targets (5–30 reps)</span>
+              </li>
+              <li class="feature-item disabled">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Apple Watch app & complications</span>
+              </li>
+            </ul>
+
+            <div class="pricing-card-status-wrap">
+              <span class="pricing-status-pill">Included Free Forever</span>
+            </div>
+          </div>
+
+          <!-- Pro Tier -->
+          <div class="glass-card pricing-card featured">
+            <div class="pricing-badge-popular">Most Popular</div>
+            <h3 style="color: var(--primary-teal); font-size: 1.5rem;">RepSnack Pro</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">You’ve built the habit. Now make it yours.</p>
+            <div class="price-amount">$2.50<span style="font-size: 1.25rem; font-weight: 500; color: var(--text-muted);">/mo</span></div>
+            <div class="price-period">Billed annually at $29.99/yr (or $3.99/mo) · $59.99 Lifetime</div>
+
+            <ul class="feature-list">
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Everything in Free</strong></span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Custom rep targets (5 to 30 reps)</strong></span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Apple Watch App & complications</strong></span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Spoken audio rep counting in AirPods</strong></span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Multiple schedule windows (AM & PM blocks)</strong></span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Streak protection (1 grace day per week)</strong></span>
+              </li>
+              <li class="feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong>Unlimited historical analytics & charts</strong></span>
+              </li>
+            </ul>
+
+            <div class="pricing-card-status-wrap">
+              <span class="pricing-status-pill pro">Unlocked In-App · 7-Day Free Trial</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-cta-section">
+          <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.6rem;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.58.67-1.09 1.74-.96 2.77 1 .08 2.07-.51 2.69-1.27z"/></svg>
+            <span>Download RepSnack on the App Store</span>
+          </a>
+          <p class="pricing-cta-subtext">
+            Free download on iPhone &amp; Apple Watch · Includes 7-day free trial of RepSnack Pro · In-App Purchase
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Author & E-E-A-T Bio Section -->
+    <section class="section" style="padding-top: 1rem; padding-bottom: 3rem;">
+      <div class="container">
+        <div class="author-card">
+          <div class="author-avatar">
+            <img src="assets/images/RepSnack_Icon_FullSquat_Light_1024.png" alt="RepSnack App Icon" class="brand-icon-light" width="96" height="96">
+            <img src="assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack App Icon" class="brand-icon-dark" width="96" height="96">
+          </div>
+          <div class="author-info">
+            <h4>Built by Femi Aliu</h4>
+            <div class="author-role">Founder & iOS Engineer · RepSnack</div>
+            <p class="author-bio">
+              "As a software engineer who spent 10+ hours a day seated at a desk, I experienced the afternoon energy crashes and back stiffness that morning workouts couldn't fix. After studying the metabolic research by Gao et al. (2024), I designed RepSnack to make desk movement effortless, discreet, and strictly private using Apple's CoreMotion sensor fusion."
+            </p>
+            <div class="author-links">
+              <a href="https://www.linkedin.com/in/femialiu" target="_blank" rel="noopener noreferrer" style="font-size: 0.88rem; font-weight: 600; color: var(--primary-teal); display: inline-flex; align-items: center; gap: 0.4rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64c-.95 0-1.66.72-1.66 1.63 0 .92.71 1.64 1.66 1.64.92 0 1.63-.72 1.63-1.64 0-.91-.71-1.63-1.63-1.63z"/></svg>
+                Connect on LinkedIn
+              </a>
+              <span style="color: var(--border-glass-tinted);">·</span>
+              <a href="science.html" style="font-size: 0.88rem; font-weight: 600; color: var(--primary-teal);">
+                Read Research Citations
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section (AEO Direct-Answer Optimized) -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto;">
+          <span class="badge badge-mint">Frequently Asked Questions</span>
+          <h2 style="margin-top: 1rem; margin-bottom: 1rem;">Everything You Need to Know</h2>
+          <p>
+            Direct answers on desk movement snacks, sensor technology, privacy guarantees, and habit mechanics.
+          </p>
+        </div>
+
+        <div class="faq-accordion">
+          <!-- Q1 -->
+          <details class="faq-item" open>
+            <summary class="faq-summary">
+              <span>Can 10 squats an hour reduce blood sugar spikes from sitting?</span>
+              <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            <div class="faq-content">
+              <p>
+                <strong>Yes.</strong> A 2024 study published by Gao et al. in the <em>Scandinavian Journal of Medicine & Science in Sports</em> demonstrated that performing 10 bodyweight squats every 45 to 60 minutes across an 8.5-hour workday produced an approximate <strong>21% reduction in post-meal blood glucose spikes</strong> compared to uninterrupted sitting. The muscle contractions pull glucose from the bloodstream via non-insulin-mediated GLUT4 translocation.
+              </p>
+            </div>
+          </details>
+
+          <!-- Q2 -->
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>How does RepSnack count squats hands-free without a camera?</span>
+              <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            <div class="faq-content">
+              <p>
+                RepSnack uses <strong>CoreMotion Sensor Fusion</strong>. By leveraging spatial head motion in AirPods Pro/Max (<code>CMHeadphoneMotionManager</code>), wrist kinematics on Apple Watch, or vertical torso displacement via an iPhone in your front pocket, RepSnack analyzes acceleration sine waves to count clean reps hands-free with zero video recording.
+              </p>
+            </div>
+          </details>
+
+          <!-- Q3 -->
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>Do I need an Apple Watch or AirPods to use RepSnack?</span>
+              <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            <div class="faq-content">
+              <p>
+                No. While AirPods Pro and Apple Watch provide the seamless hands-free experience, RepSnack works completely with just your iPhone in your front pocket. You can also tap the screen manually to log snacks if your phone is resting on a desk stand.
+              </p>
+            </div>
+          </details>
+
+          <!-- Q4 -->
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>What makes RepSnack different from a 7-minute workout or Pomodoro timer?</span>
+              <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            <div class="faq-content">
+              <p>
+                Traditional workout apps require 7–30 minutes, gym clothing, and sweating, which causes high friction during workdays. Pomodoro timers only beep without tracking physical movement. RepSnack prescribes <strong>40-second micro-interventions (10 reps)</strong> that interrupt metabolic stagnation without elevating heart rates or causing perspiration.
+              </p>
+            </div>
+          </details>
+
+          <!-- Q5 -->
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>How does RepSnack protect my privacy and HealthKit data?</span>
+              <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            <div class="faq-content">
+              <p>
+                RepSnack adheres to strict <strong>Privacy-by-Design</strong>. All CoreMotion sensor calculations happen locally in memory. No motion streams or calendar details leave your device. HealthKit write access is strictly limited to logging Mindful Minutes, and RepSnack contains zero ad trackers or data broker SDKs. Read our full <a href="privacy.html">Privacy Policy</a>.
+              </p>
+            </div>
+          </details>
+
+          <!-- Q6 -->
+          <details class="faq-item">
+            <summary class="faq-summary">
+              <span>Can I customize my schedule, active hours, and rep targets?</span>
+              <span class="faq-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </summary>
+            <div class="faq-content">
+              <p>
+                Yes. You can configure your exact work window (e.g., 9:00 AM – 5:00 PM, Monday through Friday) and toggle iOS Work Focus sync. RepSnack Pro users can also customize rep counts from 5 to 30 reps per snack and configure separate morning and afternoon schedule blocks.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download / App Store Section -->
+    <section class="section" id="download">
+      <div class="container">
+        <div class="newsletter-card">
+          <span class="badge badge-mint">Now Available on the App Store</span>
+          <h2 style="margin-top: 1rem; margin-bottom: 0.75rem; color: var(--primary-deep);">Download RepSnack Today</h2>
+          <p style="max-width: 520px; margin: 0 auto 1.5rem; color: var(--text-secondary);">
+            Build your 10-rep hourly habit with hands-free AirPods and Apple Watch tracking. Download free on the Apple App Store for iOS 18+ and watchOS 11+.
+          </p>
+
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <a href="https://apps.apple.com/us/app/repsnack/id6797024053" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.65-.79 1.1-1.9 0.98-3-.95.04-2.1 0.63-2.77 1.42-.59.68-1.12 1.8-0.98 2.87 1.07.08 2.13-.53 2.77-1.29z"/></svg>
+              Download on the App Store
+            </a>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-glass-tinted); padding-top: 1.5rem; margin-top: 1rem;">
+            <h4 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--primary-deep);">Stay in the Loop</h4>
+            <p style="font-size: 0.88rem; max-width: 480px; margin: 0 auto 1rem; color: var(--text-secondary);">
+              Subscribe for movement science updates, workout snack guides, and new feature announcements.
+            </p>
+            <form class="newsletter-form" action="#" method="POST">
+              <input type="email" class="newsletter-input" placeholder="Enter your email..." required aria-label="Email address">
+              <button type="submit" class="btn btn-secondary">Subscribe</button>
+            </form>
+            <div class="newsletter-feedback" style="display: none;"></div>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 1rem;">
+              🔒 Zero spam. Unsubscribe anytime. Your email is never sold.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <img src="assets/images/RepSnack_Icon_FullSquat_Dark_1024.png" alt="RepSnack Logo" width="32" height="32">
+            <span style="color: #FFFFFF;">RepSnack</span>
+          </div>
+          <p>
+            The desk-friendly movement coach that uses Apple Watch and AirPods sensor fusion to verify exercise snacks hands-free.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>The Science</h5>
+          <ul class="footer-links">
+            <li><a href="science.html">Sedentary Physiology</a></li>
+            <li><a href="science.html#gao-study">Gao et al. 2024 Study</a></li>
+            <li><a href="science.html#soleus-pump">Soleus Muscle Pump</a></li>
+            <li><a href="exercises.html">Exercise Kinematics</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul class="footer-links">
+            <li><a href="https://apps.apple.com/us/app/repsnack/id6797024053" target="_blank" rel="noopener noreferrer">App Store Download</a></li>
+            <li><a href="#hardware">AirPods Tracking</a></li>
+            <li><a href="#hardware">Apple Watch App</a></li>
+            <li><a href="#pricing">Pricing & Tiers</a></li>
+            <li><a href="support.html">Help Center</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Compliance & Trust</h5>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="support.html">Support & SLA</a></li>
+            <li><a href="https://www.linkedin.com/in/femialiu" target="_blank" rel="noopener noreferrer">Founder Profile</a></li>
+            <li><a href="mailto:support@repsnack.com">support@repsnack.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-disclaimer">
+        <p style="margin-bottom: 0.5rem;">
+          RepSnack is a movement reminder and fitness tracking application designed for healthy adults. It does not provide medical diagnosis, blood glucose monitoring, or medical treatment. Consult your physician before beginning any new exercise regimen.
+        </p>
+        <p>
+          © 2026 RepSnack. All rights reserved. Apple, Apple Watch, AirPods, and HealthKit are trademarks of Apple Inc., registered in the U.S. and other countries.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
