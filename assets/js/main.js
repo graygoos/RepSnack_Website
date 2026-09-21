@@ -181,6 +181,29 @@ const initRepSnack = () => {
       } catch (err) {}
     });
   } catch (err) {}
+
+  // 6. Progressive clean URLs when hosted on web server (HTTP / HTTPS)
+  try {
+    if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+      const internalLinks = document.querySelectorAll('a[href]');
+      internalLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) {
+          return;
+        }
+        if (href === 'index.html') {
+          link.setAttribute('href', '/');
+        } else if (href.startsWith('index.html#')) {
+          link.setAttribute('href', '/' + href.substring(10));
+        } else if (href.endsWith('.html')) {
+          link.setAttribute('href', '/' + href.slice(0, -5));
+        } else if (href.includes('.html#')) {
+          const parts = href.split('.html#');
+          link.setAttribute('href', '/' + parts[0] + '#' + parts[1]);
+        }
+      });
+    }
+  } catch (err) {}
 };
 
 // Execute immediately if DOM is already parsed, or wait for DOMContentLoaded

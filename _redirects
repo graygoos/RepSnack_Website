@@ -1,6 +1,4 @@
-# Cloudflare Pages Clean Route Rewrites (Status 200)
-/privacy    /privacy.html    200
-/terms      /terms.html      200
-/support    /support.html    200
-/exercises  /exercises.html  200
-/science    /science.html    200
+# RepSnack Cloudflare Pages Redirects
+# Note: Cloudflare Pages natively serves extensionless URLs (e.g. /terms -> terms.html)
+# and redirects .html paths to extensionless counterparts.
+# Do not add 200 rewrites to .html files as that creates an infinite 308 loop.
