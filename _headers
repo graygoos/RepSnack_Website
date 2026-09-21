@@ -7,8 +7,8 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-XSS-Protection: 1; mode=block
 
-# Static Asset Long-Term Caching
-/assets/*
+# Static Asset Long-Term Caching for Images & Icons
+/assets/images/*
   Cache-Control: public, max-age=31536000, immutable
 
 /exercise_assets/*
@@ -16,6 +16,13 @@
 
 /app_icons/*
   Cache-Control: public, max-age=31536000, immutable
+
+# CSS & JS Content Revalidation (prevents stale style sheets on mobile)
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
 
 # HTML Content Freshness
 /*.html

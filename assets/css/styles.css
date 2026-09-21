@@ -200,7 +200,14 @@ img, video {
   color: var(--primary-teal);
   letter-spacing: -0.03em;
   flex-shrink: 0;
+  min-width: max-content;
   white-space: nowrap;
+}
+
+.brand-logo span {
+  display: inline-block;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-logo img {
@@ -289,74 +296,73 @@ body.dark .brand-icon-light {
 /* Compact header on mobile to prevent truncating brand logo or crowding actions */
 @media (max-width: 640px) {
   .site-header {
-    padding: 0.6rem 0;
+    padding: 0.5rem 0;
   }
   .site-header.scrolled {
-    padding: 0.45rem 0;
+    padding: 0.35rem 0;
   }
   .nav-glass-container {
-    padding: 0.35rem 0.75rem;
+    padding: 0.35rem 0.65rem;
     gap: 0.5rem;
   }
   .brand-logo {
     font-size: 1.15rem;
-    gap: 0.5rem;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    min-width: max-content;
   }
   .brand-logo img {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 7px;
+    flex-shrink: 0;
   }
   .nav-actions {
-    gap: 0.4rem;
+    gap: 0.35rem;
+    flex-shrink: 0;
   }
   .nav-actions .btn-sm {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.8rem;
-  }
-  .theme-toggle-btn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    min-height: 36px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .mobile-menu-btn {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    flex-shrink: 0;
   }
 }
 
 @media (max-width: 380px) {
   .nav-glass-container {
-    padding: 0.3rem 0.5rem;
-    gap: 0.35rem;
+    padding: 0.25rem 0.45rem;
+    gap: 0.3rem;
   }
   .brand-logo {
     font-size: 1.05rem;
     gap: 0.35rem;
   }
   .brand-logo img {
-    width: 26px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
   }
   .nav-actions {
     gap: 0.25rem;
   }
   .nav-actions .btn-sm {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.72rem;
   }
-  .theme-toggle-btn,
   .mobile-menu-btn {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    min-height: 32px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
   }
-  .theme-toggle-btn svg,
   .mobile-menu-btn svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
   }
 }
 
@@ -1985,4 +1991,24 @@ body.dark .theme-toggle-btn .sun-icon {
 html.dark .theme-toggle-btn .moon-icon,
 body.dark .theme-toggle-btn .moon-icon {
   display: none !important;
+}
+
+/* Responsive Theme Toggle Sizing (placed at end of file to guarantee cascade priority) */
+@media (max-width: 640px) {
+  .theme-toggle-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+  .theme-toggle-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header .nav-actions .theme-toggle-btn {
+    display: none !important;
+  }
 }
