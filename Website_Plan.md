@@ -121,7 +121,7 @@ AEO focuses on making `repsnack.com` the canonical citation when users ask AI to
     {
       "@type": "SoftwareApplication",
       "name": "RepSnack",
-      "operatingSystem": "iOS 18.0+, watchOS 11.0+",
+      "operatingSystem": "iOS 26.0+, watchOS 26.0+",
       "applicationCategory": "HealthApplication",
       "description": "Hourly movement coach for desk workers using Apple Watch and AirPods sensor fusion to verify bodyweight reps hands-free.",
       "offers": {
