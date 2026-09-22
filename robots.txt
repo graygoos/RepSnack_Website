@@ -1,8 +1,8 @@
-# RepSnack Robots.txt — Optimized for Web & AI Answer Engine Crawlers
+# RepSnack Robots.txt — Optimized for Web & AI Search Crawlers
 User-agent: *
 Allow: /
 
-# Dedicated Permissions for AI Search & Answer Engines (AEO)
+# Dedicated Permissions for AI Search & Answer Engines
 User-agent: GPTBot
 Allow: /
 

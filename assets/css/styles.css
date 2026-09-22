@@ -1290,7 +1290,7 @@ body.dark .brand-icon-light {
   line-height: 1.5;
 }
 
-/* FAQ Accordion (AEO Optimized) */
+/* FAQ Accordion */
 .faq-accordion {
   max-width: var(--max-width-content);
   margin: 2.5rem auto 0;
