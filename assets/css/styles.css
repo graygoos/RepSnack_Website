@@ -681,16 +681,10 @@ body.dark .brand-icon-light {
 
 .phone-device-card {
   width: 100%;
-  max-width: 340px;
-  border-radius: 46px;
-  background: #000000;
-  padding: 10px;
-  box-shadow: 
-    0 25px 60px -15px rgba(14, 92, 82, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    0 0 0 4px rgba(22, 26, 25, 0.8);
+  max-width: 350px;
   position: relative;
   z-index: 2;
+  transition: transform 0.3s ease;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -702,24 +696,20 @@ body.dark .brand-icon-light {
 @media (max-width: 480px) {
   .phone-device-card {
     max-width: 290px;
-    border-radius: 40px;
-    padding: 8px;
   }
+}
+
+.phone-device-card img,
+.device-mockup-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 20px 45px rgba(14, 92, 82, 0.2));
 }
 
 .phone-screen {
-  background: #F8FAF8;
-  border-radius: 38px;
-  overflow: hidden;
   position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-@media (max-width: 480px) {
-  .phone-screen {
-    border-radius: 32px;
-  }
+  width: 100%;
 }
 
 .phone-screen img {
@@ -746,8 +736,8 @@ body.dark .brand-icon-light {
 }
 
 .floating-chip-top {
-  top: 5%;
-  right: -5%;
+  top: 7%;
+  right: -8%;
   animation-delay: 0s;
 }
 
@@ -755,6 +745,42 @@ body.dark .brand-icon-light {
   bottom: 8%;
   left: -8%;
   animation-delay: 2s;
+}
+
+/* Floating Live Activity Banner */
+.floating-live-activity {
+  position: absolute;
+  z-index: 5;
+  width: 290px;
+  max-width: 82%;
+  animation: float 4s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.floating-live-activity .live-activity-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 28px;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.12));
+  transition: transform 0.3s ease;
+}
+
+.floating-live-activity .live-activity-dark {
+  display: none;
+}
+
+[data-theme="dark"] .floating-live-activity .live-activity-light {
+  display: none;
+}
+
+[data-theme="dark"] .floating-live-activity .live-activity-dark {
+  display: block;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+}
+
+[data-theme="dark"] .device-mockup-img {
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.5));
 }
 
 @keyframes float {
@@ -769,17 +795,23 @@ body.dark .brand-icon-light {
     gap: 0.5rem;
   }
   .floating-chip-top {
-    top: 2%;
-    right: -2%;
+    top: 3%;
+    right: -3%;
   }
   .floating-chip-bottom {
     bottom: 4%;
     left: -3%;
   }
+  .floating-live-activity {
+    width: 240px;
+    top: 3%;
+    right: -4%;
+  }
 }
 
 @media (max-width: 767px) {
-  .floating-chip {
+  .floating-chip,
+  .floating-live-activity {
     display: none;
   }
 }
