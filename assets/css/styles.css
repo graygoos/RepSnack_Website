@@ -534,6 +534,9 @@ body.dark .brand-icon-light {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  background: rgba(14, 92, 82, 0.06);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass-tinted);
 }
 
 .badge-mint {
@@ -553,6 +556,21 @@ body.dark .brand-icon-light {
   backdrop-filter: blur(12px);
   color: var(--text-secondary);
   border: 1px solid var(--border-glass);
+}
+
+.sensor-confidence-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.sensor-confidence-badges .badge {
+  text-transform: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 /* Hero Section */
@@ -1062,13 +1080,17 @@ body.dark .brand-icon-light {
 .exercise-sensor-tag {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--primary-teal);
   background: var(--accent-mint-subtle);
+  border: 1px solid rgba(23, 163, 146, 0.25);
   padding: 0.35rem 0.75rem;
   border-radius: var(--radius-full);
+  line-height: 1.35;
+  text-align: center;
 }
 
 @media (max-width: 480px) {
@@ -1918,11 +1940,25 @@ html.dark #faq p {
   color: #BEC9C5;
 }
 
+[data-theme="dark"] .badge,
+html.dark .badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: #BEC9C5;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
 [data-theme="dark"] .badge-mint,
 html.dark .badge-mint {
   background: rgba(23, 163, 146, 0.22);
   color: #38E1CD !important;
   border-color: rgba(56, 225, 205, 0.4);
+}
+
+[data-theme="dark"] .exercise-sensor-tag,
+html.dark .exercise-sensor-tag {
+  background: rgba(23, 163, 146, 0.2);
+  color: #38E1CD;
+  border-color: rgba(56, 225, 205, 0.35);
 }
 
 [data-theme="dark"] .author-card,
